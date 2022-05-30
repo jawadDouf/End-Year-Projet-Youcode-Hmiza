@@ -1,0 +1,97 @@
+@import "@/sass/variables.scss";
+@mixin flex($direction:column,$justify-content:center,$aligin-items:center) {
+   display: flex;
+   flex-direction: $direction; 
+   justify-content: $justify-content;
+   align-items: $aligin-items;
+}
+@mixin text($font-size:$primary-size){
+    font-family: $primary-font;
+    font-size: $font-size;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+@mixin button($vertical-padding:8px,$horizontal-padding:70px,$border-radius:4px) {
+   padding: $vertical-padding $horizontal-padding;
+   color : white;
+   background-color: $primary-color;
+   border: none;
+   border-radius: $border-radius;
+   cursor: pointer;
+   background-color: $primary-color;
+    &:hover{
+         background-color: $secondary-color;
+    }
+}
+@mixin input($width:100%){
+    padding-block: 5px;
+    padding-left: 1px ;
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.409);
+    color: white;
+    outline: white;
+    border:  none;
+    &:focus{
+        outline:white solid 1px;
+    }
+}
+@mixin label(){
+    display: block;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-block: 3px;
+
+}
+@mixin categorie($color,$background-color,$padding-block:2px,$padding-inline:5px){
+   color: $color;
+   background-color: $background-color;
+   padding-block:$padding-block;
+   padding-inline: $padding-inline;
+   margin-inline:6px;
+   font-size: 12px;
+   border-radius: 3px;
+   border: solid black 1px;
+   @include tablet{
+    padding-block: 2px;
+    padding-inline: 2px;
+    font-size: 10px;
+    margin-inline:3px;
+}
+@include smallTablet{
+    padding-block: 2px;
+    padding-inline: 2px;
+    font-size: 10px;
+    margin-inline:3px;
+}
+@include mobile{
+    padding-block: 2px;
+    padding-inline: 2px;
+    font-size: 10px;
+    margin-inline:3px;
+}
+}
+@mixin filterButton($background-color:#2557a7,$border:none,$color:white){
+    padding-block: 8px;
+    padding-inline: 30px;
+    background-color:$background-color;
+    color: $color;
+    border: $border;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-weight: 1.5;
+    font-family: $primary-font;
+    @include tablet{
+        padding-block: 6px;
+        padding-inline: 24px;  
+    }
+    @include smallTablet{
+        padding-block: 4px;
+        padding-inline: 20px;    
+    }
+    @include mobile{
+        padding-block: 4px;
+        padding-inline: 18px;   
+        font-size: 13px; 
+    }
+}

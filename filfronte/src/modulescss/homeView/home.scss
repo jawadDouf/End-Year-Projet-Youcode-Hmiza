@@ -1,0 +1,182 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+.secSection{
+.secSection_title{
+    padding-top:30px;
+    text-align: center;
+    font-size: 2rem;
+    @include mobile{
+    font-size: 30px;
+    }
+    }
+.secSection_elements{
+    padding-top: 20px ;
+    gap: 15%;
+    @include flex($direction:row);
+@include tablet{
+    @include flex($direction:column);
+}
+@include mobile{
+    @include flex($direction:column);
+}
+    
+.secSection_leftside{
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+@include mobile{
+    height:260px;
+}
+.secSection_leftside_bigTitle{
+    font-size:30px;
+    @include tablet{
+    text-align:center;
+}
+@include mobile{
+    text-align:center;
+    font-size:25px;
+}
+
+}
+.secSection_leftside_par{
+margin-block:15px;
+font-size: 18px;
+    @include tablet{
+    text-align:center;
+}
+    @include mobile{
+    display: none;
+    }
+}
+.secSection_leftside_checkpoints{
+
+.par{
+margin-block:10px;
+@include tablet{
+    text-align:center;
+}
+@include mobile{
+    text-align:center;
+}
+.span{
+padding-left:8px ;
+}
+.check{
+    color: #554BBF;
+    
+
+}
+}
+}
+.secSection_leftside_button{
+    margin-block: 15px;
+    @include tablet{
+    text-align:center;
+}
+@include mobile{
+    text-align:center;
+}
+.button{
+    @include button($vertical-padding:12px,$horizontal-padding:20px,$border_radius:5px);
+    background-color: #554BBF;
+}
+
+}
+
+}
+.secSection_rightside{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+@include tablet{
+    grid-template-columns: repeat(4, 1fr);
+    @include flex($direction:row);
+    flex-wrap: wrap;
+}
+@include mobile{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 70%;
+}
+.secSection_rightside_service{
+    border: solid 1px grey;
+    border-radius:5px;
+    padding: 20px;
+    margin:20px ; 
+@include mobile{
+    @include flex;
+    text-align: center;
+}
+
+a{
+color: #554BBF;
+font-size:20px;
+font-weight:400;
+}
+}
+}
+}
+}
+.thirdsection{
+    margin-block: 20px;
+    padding-block:30px ;
+    background-color: #2D4487;
+    @include flex;
+    color: white;
+.thirdsection_bigTitle{
+    text-align: center;
+}
+.thirdsection_par{
+    margin-block:10px ;
+}
+.thirdsection_checkpoints{
+    margin-block: 5px;
+    
+.par{
+margin-block:10px ;
+}
+.span{
+padding-left:8px ;
+}
+.check{
+    color: #49FF00;
+    
+
+}
+
+}
+.thirdsection_button{
+    margin-block: 10px;
+    @include button($vertical-padding:10px,$horizontal-padding:40px,$border_radius:5px);
+    background-color:white;
+    color: $primary-color;
+    
+}
+}
+.fourthsection{
+    
+.fourthsection_bigTitle{
+    text-align: center;
+    margin-block: 35px;
+}
+.fourthsection_logos{
+    margin-inline: 10%;
+    @include flex($direction:row);
+    gap: 15%;
+    flex-wrap: wrap;
+    
+.logo{
+    width: 80px;
+    height: auto;
+}
+}
+.fourthsection_button{
+    @include button($vertical_padding:12px,$horizontal_padding:40px,$border_radius:5px);
+    margin-block:45px;
+    margin-left: 43%;
+    background-color: #2D4487;
+    @include mobile{
+    margin-left:30%;
+    
+    }
+}
+}

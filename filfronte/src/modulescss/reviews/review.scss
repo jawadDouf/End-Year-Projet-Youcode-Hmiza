@@ -1,0 +1,86 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+.container{
+   margin-top: 20px;
+   width: 35%;
+   min-width: 350px;
+   border: 1px solid #0000005d;
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+   border-radius: 10px;
+   padding: 10px;
+   padding-inline: 15px;
+   padding-top: 10px;
+   margin-left: 10px;
+   font-weight: 200;
+.user{
+    display: grid;
+    grid-template-columns: 10% 90%;
+.userInfos{
+p{
+    font-size: 14px;
+    color: rgb(83, 82, 82); 
+}
+}
+img{
+    width:100%;
+    height: auto;
+    border-radius: 80px;
+    
+}
+}
+.product{
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+img{
+    width: 90%;
+    height: auto;
+    padding-left: 13px;
+    padding-top: 10px;
+}
+.productInfos{
+    margin-top: 6px;
+p{
+    padding-block: 6px;
+.product_title{
+    font-weight: bold;
+}
+.product_answer{
+    padding-left: 7px;
+}
+    
+
+}
+}
+}
+.reviewHeader{
+    margin-top: 30px;
+    @include flex($direction:row,$justify-content:space-between);
+    padding-top: 10px;
+    padding-bottom: 20px;
+.title{
+    
+p{
+    font-size: 14px;
+    color: rgb(83, 82, 82);
+}
+}
+p{
+    align-self:flex-start;
+.star{
+    padding-bottom: 3px;
+    padding-right: 3px;
+    color: rgb(255, 166, 0);
+}
+.note{
+    font-size: 25px;
+    font-weight: bold;
+}
+}
+}
+}
+.line{
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,74 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+// .hr{
+//     margin-top: 40px;
+//     width: 70%;
+//     margin-left: auto;
+//     margin-right: auto;
+// }
+
+.list{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    @include tablet{
+        width: 90%;
+    }
+    @include smallTablet{
+        width: 95%;
+    }
+    @include mobile{
+        width: 95%;
+    }
+.items{
+    @include flex($direction:row,$justify-content:flex-start);
+     flex-wrap: wrap;
+
+}
+}
+.table{
+    width: 100%;
+    // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.table_titles{
+    width: 10%;
+    color: rgba(0, 0, 0, 0.495);
+    font-size: 16px;
+    font-weight: 300;
+@include mobile{
+    font-size: 12px;
+}
+}   
+}
+
+.icon{
+    padding-left: 5px;
+    cursor: pointer;
+}
+th:nth-child(3){
+    @include mobile{
+     display: none;   
+    } 
+    @include smallTablet{
+     display: none;   
+    }
+    @include tablet{
+        display: none;
+    }
+    
+}
+th:first-child{
+    @include mobile{
+        display: none;   
+       }  
+}
+// th:last-child{
+//     @include mobile{
+//         display: none;   
+//        }   
+// }

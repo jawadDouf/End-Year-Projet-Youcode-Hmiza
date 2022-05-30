@@ -1,0 +1,36 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+.container{
+    margin-top: 10px;
+    padding-left: 5%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    @include flex($direction:row,$justify-content:center);
+    gap:4%;
+    flex-wrap: wrap;
+    @include tablet{
+    @include flex($direction:row,$justify-content:center);
+    }
+    @include smallTablet{
+        @include flex($direction:row,$justify-content:flex-start);
+    }
+    
+}
+.add{
+        width: 250px;
+        height: 190px;
+        border: 1px solid #0c4aad;
+        border-radius: 6px;  
+        @include flex($direction:row);
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(220, 219, 219);
+        }
+.icon{
+    width: 50px;
+    height: auto;
+
+}
+}

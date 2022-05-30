@@ -1,0 +1,44 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+
+.container_title{
+    margin-top: 20px;
+}
+.container_form{
+    width: 70%;
+
+
+
+
+       }
+.label{
+@include label
+ 
+}
+.input{
+  @include input;
+}
+.field{
+ margin-block: 15px;
+
+
+}
+.button{
+    @include button;
+    width: 100%;
+    background-color: #4c41c0;
+}
+.a{
+    margin-left: 30%;
+    cursor: pointer;
+    
+  }
+.par{
+   display: inline;
+  }
+.login{
+   margin-block: 20px;
+
+
+  }

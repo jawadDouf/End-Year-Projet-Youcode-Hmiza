@@ -1,0 +1,6 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+.container{
+    @include flex($direction:column)
+}

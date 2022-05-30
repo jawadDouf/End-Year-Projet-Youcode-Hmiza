@@ -1,0 +1,126 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+.footer{
+  background-color: #2D4487;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  padding-top: 20px;
+  padding-bottom: 90px;
+  @include flex($direction:row);
+  gap: 15%;
+ @include tablet{
+   gap: 3%;
+   flex-wrap: wrap;
+ }
+ @include smallTablet{
+  gap: 3%;
+ }
+ @include mobile{
+  gap: 5%;
+ }
+}
+.footer_logo{
+ align-self: flex-start;
+ margin-top: 10px;
+ @include tablet{
+  align-self: flex-start;
+ 
+ }
+.logo{
+ margin-block: 10px;
+ @include mobile{
+   font_size: 20px;
+ }
+}
+.description{
+ margin-block:10px;
+ @include mobile{
+   font_size: 14px;
+ }
+}
+}
+.footer_services{
+ display: grid;
+ grid-template-columns: repeat(4,1fr);
+ @include mobile{
+  grid-template-columns:repeat(2,1fr);
+ }
+ @include smallTablet{
+   grid-template-columns: repeat(2,1fr);
+ }
+.service{
+ margin-inline: 35px;
+ @include tablet {
+   margin-inline: 20px;
+ }
+ @include smallTablet{
+   margin-inline:15px;
+ }
+ @include mobile{
+  margin-inline: 8px;
+ }
+.service_title{
+  margin-block: 20px;
+  @include mobile{
+   font-size: 20px;
+  }
+}
+.service_par{
+ margin-block: 10px;
+ @include mobile{
+  font-size:12px;
+ }
+}
+}
+
+}
+.subFooter{
+ background-color: #2D4487;
+ color: white;
+ display: grid;
+ grid-template-rows: 2fr 1fr;
+.subFooter_firstLine{
+  @include flex($direction:row,$justify-content:space-between);
+.firstLine_navLinks{
+ul{
+li{
+ display: inline;
+ list-style: none;
+ margin-inline: 15px;
+ @include mobile{
+  font-size: 14px;
+  margin-inline: 10px;
+ }
+}
+}
+}
+.firstLine_smLinks {
+.smLink{
+  width: 25px;
+  height: auto;
+  margin-inline: 15px;
+  cursor: pointer;
+@include mobile{
+  width: 18px;
+  height: auto;
+  margin-inline: 10px;
+ }
+&:hover{
+ color: rgb(159, 158, 158);
+}
+}
+ 
+
+}
+}
+.subFooter_secondLine{
+p{
+ text-align: center;
+ @include mobile{
+  font-size:12px;
+ }
+}
+}
+}

@@ -1,0 +1,29 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+
+
+.userInterface{
+ @include flex($direction:column);
+ padding: 15px;
+ border: 1px solid white;
+ border-radius: 10px;
+ margin-block: 20px;
+ cursor: pointer;
+}
+.boInterface{
+    @include flex($direction:column);
+    padding: 13px;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    
+
+}
+.icon{
+    width: 50px;
+    height: auto;
+}
+h2{
+    padding-block: 15px;
+}

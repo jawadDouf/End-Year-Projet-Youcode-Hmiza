@@ -1,0 +1,61 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+
+.tr{
+    border-inline: solid 1px rgba(0, 0, 0, 0.363);
+    border-left: 3px solid $secondary-color;
+    
+.td{
+    text-align: center;
+    padding-block: 10px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.11);
+    color: $secondary-color;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+    @include mobile{
+        font-size: 12px;
+    }
+.img{
+        width: 20%;
+        height: auto;
+    }
+.button{
+    @include button();
+    background-color: $secondary-color;
+    padding-inline: 10px;
+    padding-block: 5px;
+    @include mobile{
+    padding-inline: 8px;
+    padding-block: 3px;
+    font-size: 10px;
+    }
+    @include smallTablet{
+        padding-inline: 7px;
+        padding-block: 4px;
+        font-size: 10px; 
+    }
+}
+}
+
+}
+td:nth-child(3){
+ @include mobile{
+     display: none;
+ }
+ @include smallTablet{
+    display: none;
+ }
+ @include tablet{
+     display: none;
+ }
+
+}
+td:nth-child(1){
+    @include mobile{
+        display: none;
+    }
+
+}
