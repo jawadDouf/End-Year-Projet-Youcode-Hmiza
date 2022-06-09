@@ -30,13 +30,16 @@ img{
 }
 }
 .product{
-    margin-bottom: 50px;
+    // margin-bottom: 50px;
+    padding-block: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    background-color: rgb(177, 177, 177);
+    border-radius: 6px;
 img{
     width: 90%;
     height: auto;
-    padding-left: 13px;
+    padding-left: 30px;
     padding-top: 10px;
 }
 .productInfos{
@@ -83,4 +86,5 @@ p{
 .line{
     margin-left: auto;
     margin-right: auto;
+    display: none;
 }

@@ -10,7 +10,7 @@
   <h2 :class="one.h2">Iphone 2020 S5 JAPAN STEVY DUDE UAYEUZ</h2>
   <p :class="one.p">{{ topProduct?.produit_description }}</p>
   <div :class="one.spans">
-  <span :class="one.span1">Product</span>
+  <span :class="one.span1">{{topProduct?.produit_categorie}}</span>
   <span :class="one.span2">Technologie</span>
   <span :class="one.span3">Phone</span>
   </div>

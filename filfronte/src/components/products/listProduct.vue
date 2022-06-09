@@ -39,21 +39,34 @@
       
       </div>
      <div :class="listProduct.footer">
-         <button>Update</button>
+         <button @click.prevent="updateFormCond  = !updateFormCond">Update</button>
          <button>See More</button>
-         <button>Delete</button>
+         <button @click.prevent="dlt(oneProduct.produit_id)">Delete</button>
      </div> 
+     
   </div>
-
+  <updateProductVue v-if="updateFormCond === true" :oneProduct="oneProduct" @event="updateFormCond = !updateFormCond"/>
 
 </template>
 <script setup>
+import axios from "axios";
 import listProduct from "../../modulescss/products/listProduct.scss"
+import updateProductVue from "../forms/updateProduct.vue";
+import { ref } from "vue";
+
+var updateFormCond = ref(false)
 const props = defineProps({
     oneProduct : Object
 })
-
-
+function met(){
+  
+  console.log(updateFormCond.value)
+}
+function dlt(id){
+     axios
+     .delete('http://localhost/folderr/Produit_BusinessApi//delete/' + localStorage.getItem('id'))
+     .then(response => console.log(response.data))
+}
 
 
 

@@ -30,13 +30,13 @@
 import axios from "axios";
 import login from "../../modulescss/authentification/login.scss"
 import { useRouter, useRoute } from 'vue-router'
-
+import { useStore } from "vuex";
 import { ref } from "vue";
 const route = useRoute()
 const router = useRouter()
      var email = ref(null)
      var password = ref(null)
-  
+const store = useStore()
 function loginn(email,password){
       var formData = new FormData();
       formData.append('email',email)
@@ -45,6 +45,7 @@ function loginn(email,password){
           .then(function (response){
             if(response.data.id){
               localStorage.setItem('id',response.data.id ); 
+              store.state.navSwitcher = localStorage.getItem('id');
                router.push({name: 'userProfileVue'})
             }
           })

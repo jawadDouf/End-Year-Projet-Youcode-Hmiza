@@ -5,6 +5,7 @@ export default createStore({
   state: {
     products : [],
     authCond : 0,
+    navSwitcher : undefined,
     user : {
       nom : null,
       prenom : null,
@@ -36,6 +37,9 @@ export default createStore({
     },
     search(state,loader){
       state.search = loader;
+    },
+    changeNav(state,loader){
+      state.navSwitcher = loader
     },
     changeAuth(state,loader){
       state.authCond = loader;
@@ -94,8 +98,11 @@ export default createStore({
         .get('http://localhost/folderr/produitApi/produitsSearch/' + toSearchWith)
         .then(response => (response.data.forEach(element => {
              commit('fillProducts',element);
-             console.log("hadchi 5adaam")
-        })))
+        }))).then(()=> {
+          if(toSearchWith === "d" ){
+            localStorage.setItem("lastId",this.state.products[this.state.products.length-1].produit_id)
+          }
+        })
       },
 
    async addUser({commit}){

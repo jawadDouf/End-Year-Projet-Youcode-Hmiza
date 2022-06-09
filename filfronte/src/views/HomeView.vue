@@ -69,11 +69,10 @@
     </div>
     <button :class="home.fourthsection_button">Learn More >></button>
   </div> 
- <Footer />
+
 </template>
 
 <script setup>
 import home from "../modulescss/homeView/home.scss"
 import Nav from "../components/globalComp/nav.vue"
-import Footer from "../components/globalComp/footer.vue"
 </script>

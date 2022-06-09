@@ -29,10 +29,12 @@
 import axios from "axios";
 import login from "../../modulescss/authentification/login.scss"
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from "vuex";
 import { ref } from "vue";
 
 const route = useRoute()
 const router = useRouter()
+const store = useStore()
 var email = ref(null)
 var password = ref(null)
 function loginn(email,password){
@@ -44,6 +46,7 @@ function loginn(email,password){
                console.log(response.data)
             if(response.data.business_id){
               localStorage.setItem('id',response.data.business_id ); 
+               store.state.navSwitcher = localStorage.getItem('id');
                router.push({name: 'businessProfileView'})
             }
           })

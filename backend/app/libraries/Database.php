@@ -37,7 +37,8 @@
     public function query($sql){
       $this->stmt = $this->dbh->prepare($sql);
     }
-
+    
+    
     // Bind values
     public function bind($param, $value, $type = null){
       if(is_null($type)){

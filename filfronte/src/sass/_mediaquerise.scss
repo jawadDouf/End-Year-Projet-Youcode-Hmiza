@@ -11,6 +11,12 @@
   }
 
 }
+@mixin dangerBreakPoint{
+  @media only screen and (min-width: 600px) and ( max-width: 750px) {
+    @content;
+  }
+
+}
 @mixin mobile {
   @media only screen and (max-width: 500px) {
     @content;

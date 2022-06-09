@@ -17,6 +17,7 @@
       $this->db->bind(':produit_souscategorie2', $data['produit_souscategorie2']);
       // Execute
       if($this->db->execute()){
+        
         return true;
       } else {
         return false;

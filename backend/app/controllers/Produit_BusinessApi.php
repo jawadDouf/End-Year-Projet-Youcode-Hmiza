@@ -6,6 +6,8 @@
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json'); 
       }
+
+      
     
       public function addproduit_business()
       {
@@ -17,29 +19,29 @@
             'produit_prix' => $_POST['produit_prix'],
             'produit_id' => $_POST['produit_id'],
             'business_id' => $_POST['business_id'],
-            'produit_img' => $_FILES['produit_img'],
+            'produit_img2' => $_FILES['produit_img2'],
             'produit_prix_err' => '',
             'produit_id_err' => '',
             'business_id_err' => '',
-            'produit_img_err' => ''
+            'produit_img2_err' => ''
           ];
-          $imag_name = $data['produit_img']['name'];
-          $imag_size = $data['produit_img']['size'];
-          $tmp_name = $data['produit_img']['tmp_name'];
+          $imag_name = $data['produit_img2']['name'];
+          $imag_size = $data['produit_img2']['size'];
+          $tmp_name = $data['produit_img2']['tmp_name'];
 
           if ($imag_size > 10250000) {
-            $data['produit_img_err'] = "sorry , your file is too large ";
+            $data['produit_img2_err'] = "sorry , your file is too large ";
           } else {
             $img_ex = pathinfo($imag_name, PATHINFO_EXTENSION);
             $img_ex_lc = strtolower($img_ex);
-            $allowed_exs = array("jpg", "jpeg", "png");
+            $allowed_exs = array("jpg", "jpeg", "png","webp");
             if (in_array($img_ex_lc, $allowed_exs)) {
               $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
               $img_upload_path = "img/$new_img_name";
               move_uploaded_file($tmp_name, $img_upload_path);
-              $data['produit_img'] = URLROOT . "/img/$new_img_name";
+              $data['produit_img2'] = URLROOT . "/img/$new_img_name";
             } else {
-              $data['produit_img_err'] = "you can't upload files of this type";
+              $data['produit_img2_err'] = "you can't upload files of this type";
             }
       
           if (empty($data['produit_prix'])) {
@@ -54,7 +56,7 @@
           // Make sure no errors
           if (empty($data['produit_prix_err']) && empty($data['produit_id_err']) && empty($data['business_id_err'])) {
             // Validated
-            if ($this->produit_businessModel->addBusinessProduct($data)){
+            if ($this->produit_businessModel->addBusinessProductToOldProduct($data)){
               $arr = array(
                 'messproduit_note' => 'relation Added'
               );
@@ -75,6 +77,9 @@
          echo json_encode($produits);
 
   }
+
+   
+
 
   public function getproduitsbusiness($id)
   {
@@ -135,26 +140,25 @@
       echo json_encode($arr);
     }
   }
-
-  public function delete()
-  {
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $postedData = json_decode(file_get_contents("php://input"));
-      $data = [
-        'id' => $postedData->id
-      ];
-      if ($this->userModel->deleteProduit($data['id'])) {
-        $arr = array(
-          'messproduit_note' => 'Produit Deleted'
-        );
-        echo json_encode($arr);
-      } else {
-        $arr = array(
-          'messproduit_note' => 'Something went wrong'
-        );
-        echo json_encode($arr);
+  
+      public function getoneproduct($id)
+      {       
+             $produit = $this->produit_businessModel->getOneProduct($id);
+             echo json_encode($produit);
       }
+      
+  public function delete($id){
+    echo "ddd";
+    if ($this->produit_businessModel->deleteProduit($id)) {
+        $arr = array(
+            'message' => 'product Deleted'
+        );
+        echo json_encode($arr);
+    } else {
+        $arr = array(
+            'message' => 'Something went wrong'
+        );
+        echo json_encode($arr);
     }
   }
 

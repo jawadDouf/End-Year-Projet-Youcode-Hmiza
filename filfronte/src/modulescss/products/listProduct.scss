@@ -6,6 +6,12 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 width: 250px;
 height: auto;
 @include flex($direction:column);
+@include mobile{
+    margin-block: 15px;
+}
+@include tablet{
+    margin-block: 15px;
+}
 // padding: 10px;
 border: 1px solid #0c4aad;
 border-radius: 6px;
