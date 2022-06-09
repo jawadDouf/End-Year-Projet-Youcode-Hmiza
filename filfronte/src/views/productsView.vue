@@ -96,7 +96,8 @@ var filter = {
     "Technologie" : [
       "Phone",
       "Tablet",
-      "Smart Watch"
+      "Smart Watch",
+      "Speaker"
     ],
 
 }

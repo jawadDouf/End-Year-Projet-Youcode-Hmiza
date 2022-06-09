@@ -92,12 +92,17 @@
     }
 
     public function getOneProduct($id){
-      $this->db->query('SELECT * FROM produit_business WHERE id = :id');
+      $this->db->query('SELECT * FROM produit_business
+                        INNER JOIN produits
+                        WHERE id = :id AND produit_business.produit_id = produits.produit_id
+                        ');
      // Bind value
      $this->db->bind(':id', $id);
      $row = $this->db->single();
       return $row;
    }
+
+    
 
     // public function deleteProduit($id){
     //   $this->db->query('DELETE  FROM produit_business WHERE id = :id');                 

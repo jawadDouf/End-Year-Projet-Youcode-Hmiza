@@ -5,6 +5,7 @@ import productsView from '../views/productsView.vue'
 import oneProductView from '../views/oneProductView.vue';
 import businessProfileView from '../views/businessProfileView.vue';
 import userProfileVue from '../views/userProfileVue.vue';
+import oneBusProView from '../views/oneBusProView.vue'
 const routes = [
   {
     path: '/',
@@ -40,6 +41,11 @@ const routes = [
     path: '/userProfileVue',
     name: 'userProfileVue',
     component: userProfileVue
+  },
+  {
+    path: '/businessProfileView/:id',
+    name: 'oneBusProView',
+    component: oneBusProView
   },
 ]
 

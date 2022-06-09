@@ -1,7 +1,7 @@
 <template>
   <div :class="product.container">
   <div :class="product.image">
-  <img src="../../../../backend/public/Img/coverFirstImage.png" alt="">
+  <img :src="oneProduct.produit_img" alt="" style="height:210px">
   </div>
   <div :class="product.infos">
   <h3> {{ oneProduct.produit_nom }}</h3>
@@ -25,9 +25,14 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import product from "../../modulescss/products/product.scss"
 const props = defineProps({
   oneProduct: Object
+})
+
+onMounted({
+  
 })
 </script>
 

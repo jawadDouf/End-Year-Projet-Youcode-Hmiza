@@ -53,7 +53,9 @@
       }
 
       public function getReviewOfPb($id){
-        $this->db->query('SELECT * FROM review WHERE produit_business_id = :id');       
+        $this->db->query('SELECT * FROM review 
+                          INNER JOIN utilisateur
+                          WHERE produit_business_id = :id AND review.utilisateur_id = utilisateur.id');       
         $this->db->bind(':id',$id);
         $results = $this->db->resultSet();
         // $reviewsNumber = $results->$this->db->rowCount();

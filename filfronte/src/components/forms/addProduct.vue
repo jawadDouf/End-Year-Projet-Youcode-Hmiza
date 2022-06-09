@@ -92,7 +92,8 @@ var options = {
     "Technologie" : [
       "Phone",
       "Tablette",
-      "Watch"
+      "Watch",
+      "Speaker"
     ]
     }
 function sendImage(event){

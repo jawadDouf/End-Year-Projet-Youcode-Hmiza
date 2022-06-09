@@ -8,13 +8,14 @@
     
     
     public function addProduit($data){
-      $this->db->query('INSERT INTO produits (produit_nom,produit_description,produit_categorie,produit_souscategorie,produit_souscategorie2) VALUES(:produit_nom,:produit_description,:produit_categorie,:produit_souscategorie,:produit_souscategorie2)');
+      $this->db->query('INSERT INTO produits (produit_nom,produit_description,produit_categorie,produit_souscategorie,produit_souscategorie2,produit_img) VALUES(:produit_nom,:produit_description,:produit_categorie,:produit_souscategorie,:produit_souscategorie2,:produit_img)');
       // Bind values
       $this->db->bind(':produit_nom', $data['produit_nom']);
       $this->db->bind(':produit_description', $data['produit_description']);
       $this->db->bind(':produit_categorie', $data['produit_categorie']);
       $this->db->bind(':produit_souscategorie', $data['produit_souscategorie']);
       $this->db->bind(':produit_souscategorie2', $data['produit_souscategorie2']);
+      $this->db->bind(':produit_img', $data['produit_img2']);
       // Execute
       if($this->db->execute()){
         

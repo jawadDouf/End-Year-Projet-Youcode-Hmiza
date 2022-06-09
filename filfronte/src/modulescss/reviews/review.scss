@@ -3,13 +3,14 @@
 @import "@/sass/mediaquerise.scss";
 .container{
    margin-top: 20px;
-   width: 35%;
+   width: 37%;
    min-width: 350px;
+   height: 180px;
    border: 1px solid #0000005d;
    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
    border-radius: 10px;
    padding: 10px;
-   padding-inline: 15px;
+   padding-inline: 10px;
    padding-top: 10px;
    margin-left: 10px;
    font-weight: 200;
@@ -23,10 +24,13 @@ p{
 }
 }
 img{
-    width:100%;
-    height: auto;
+    width:35px;
+    height:35px;
     border-radius: 80px;
-    
+    @include mobile{
+        width:32px;
+        height:35px;   
+    }
 }
 }
 .product{
@@ -87,4 +91,11 @@ p{
     margin-left: auto;
     margin-right: auto;
     display: none;
+}
+.listContainer{
+    @include flex($direction:row,$justify-content:center);
+    flex-wrap: wrap;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }

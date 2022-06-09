@@ -21,8 +21,12 @@
 }
 .container_img{
 .img{
-    width: 100%;
+    width: 80%;
     height: auto;
+   @include mobile{
+       width: 100%;
+   }
+
 } 
 }
 .container_infos{

@@ -34,13 +34,13 @@
       30
       </span>
       </p>
-      
-      </div>
-      
+      </div> 
       </div>
      <div :class="listProduct.footer">
          <button @click.prevent="updateFormCond  = !updateFormCond">Update</button>
-         <button>See More</button>
+         <button><router-link :class="listProduct.linkk" :to ="{ name:'oneBusProView',params : {id : oneProduct.id , oneProduct:oneProduct}}">
+         See More
+         </router-link></button>
          <button @click.prevent="dlt(oneProduct.produit_id)">Delete</button>
      </div> 
      
