@@ -1,8 +1,14 @@
 <template>
-<div :class="reviewStyle.listContainer">
 
-<productReview v-for="review in reviews" :review="review"/>
+<div :class="reviewStyle.listContainer" >
+
+
+<productReview v-if="$store.state.blockPage == 1" v-for="review in reviews" :review="review"/>
+<productReview v-if="$store.state.blockPage == 2" v-for="review in reviews.sort(function(a, b){return b.note - a.note})" :review="review"/>
+<productReview v-if="$store.state.blockPage == 3" v-for="review in reviews.sort(function(a, b){return a.note - b.note})" :review="review"/>    
 </div>
+
+
 
 
  

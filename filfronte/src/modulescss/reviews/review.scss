@@ -93,6 +93,7 @@ p{
     display: none;
 }
 .listContainer{
+    
     @include flex($direction:row,$justify-content:center);
     flex-wrap: wrap;
     width: 90%;

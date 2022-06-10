@@ -38,9 +38,11 @@
       }
   }
     public function updateNote($data){
+      $product = $this->getOneProduct($data['produit_business_id']);
+      $note = $product->produit_note . $data['note'] / 2;
       $this->db->query('UPDATE produit_business SET produit_note = :produit_note  WHERE id = :id');
       // Bind values
-      $this->db->bind(':produit_note', $data['note']);
+      $this->db->bind(':produit_note', $note);
       $this->db->bind(':id', $data['produit_business_id']);
 
      
@@ -94,7 +96,10 @@
     public function getOneProduct($id){
       $this->db->query('SELECT * FROM produit_business
                         INNER JOIN produits
-                        WHERE id = :id AND produit_business.produit_id = produits.produit_id
+                        ON produit_business.produit_id = produits.produit_id
+                        INNER JOIN business
+                        ON  produit_business.business_id = business.business_id
+                        AND  id = :id 
                         ');
      // Bind value
      $this->db->bind(':id', $id);

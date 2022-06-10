@@ -6,7 +6,11 @@
   <td :class="item.td">{{ review?.reviewsNumber }}</td>
   <td :class="item.td">{{ oneItem.produit_note}}/10</td>
   <td :class="item.td">{{ oneItem.produit_prix }}$</td>
-  <td :class="item.td"><button :class="item.button">More Infos</button></td>
+  <td :class="item.td"><button :class="item.button">
+  <router-link :class="item.linkk" :to ="{ name:'oneBusProView',params : {id : oneItem.id , oneProduct:oneProduct}}">
+  More Infos
+  </router-link>
+  </button></td>
    </tr>
   
 </template>

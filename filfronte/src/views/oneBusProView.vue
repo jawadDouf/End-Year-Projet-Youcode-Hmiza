@@ -15,15 +15,17 @@
   <span :class="one.span3">Phone</span>
   </div>
   
-  <h3 :class="one.h3"><span :class="one.spans2">Rating Range :</span> {{oneProduct.produit_note}}/10</h3>
+  <h3 :class="one.h3"><span :class="one.spans2">Rating :</span> {{oneProduct.produit_note}}/10</h3>
   
-  <h3 :class="one.h3"><span :class="one.spans2">Price Review :</span> {{oneProduct.produit_prix }}$</h3>
-
+  <h3 :class="one.h3"><span :class="one.spans2">Price :</span> {{oneProduct.produit_prix }}$</h3>
+  <h3 :class="one.h3"><span :class="one.spans2">Store Location :</span> <span :class="one.businessName">{{oneProduct.business_nom }}</span></h3>
+  <h3 :class="one.h3"><span :class="one.spans2">Store :</span> <span >{{oneProduct.business_adresse }},{{oneProduct.business_location}}</span></h3>
+ <button @click="addCond = !addCond">Add Review</button>
   </div> 
  </div>
    <profileHeader :headerElements=headerElements />
    <reviewsList :id="id"/>
-
+   <ultimeFormVue v-if="addCond" @event="addCond = !addCond" />
 
 
 
@@ -38,11 +40,12 @@ import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router'
 import profileHeader from "../components/blocks/profileHeader";
 import reviewsList from "../components/reviews/listProReviews.vue"
+import ultimeFormVue from '@/components/forms/ultimeForm.vue';
 const route = useRoute()
 let id = route.params.id
 let oneProduct = ref("");
 var headerElements = ["Reviews","Best Reviews","Worst Reviews"]
-
+let addCond = ref(false)
 
 onMounted(
     () =>{

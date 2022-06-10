@@ -2,7 +2,7 @@
  <div :class="header.profile_elements">
     <p :class="header.profile_element" id="Stores" @click="storesGenerator">{{ headerElements[0] }}</p>
     <p :class="header.profile_element" id="Reviews" @click="reviewsGenerator">{{ headerElements[1] }}</p>
-    <p :class="header.profile_element" id="reviews3" @click="reviewsGenerator2" >{{ headerElements[2] }}</p>
+    <p :class="header.profile_element" id="Reviews3" @click="reviewsGenerator2" >{{ headerElements[2] }}</p>
  </div>
  
 
@@ -31,7 +31,9 @@ function storesGenerator(){
 
       if(productsList.value == true){
         document.getElementById("Stores").style.borderBottom = "solid 3px hsla(225, 50%, 35%, 1)" 
-        document.getElementById("Reviews").style.borderBottom = "none"             
+        document.getElementById("Reviews").style.borderBottom = "none"      
+        document.getElementById("Reviews3").style.borderBottom = "none"   
+
       }else {
         document.getElementById("Stores").style.borderBottom = "none"   
       }
@@ -42,11 +44,12 @@ function reviewsGenerator(){
      productsList.value = false
       if(infosList.value == true){
         document.getElementById("Reviews").style.borderBottom = "solid 3px hsla(225, 50%, 35%, 1)"
-        document.getElementById("Stores").style.borderBottom = "none"        
+        document.getElementById("Stores").style.borderBottom = "none"    
+        document.getElementById("Reviews3").style.borderBottom = "none"   
       }else {
         document.getElementById("Reviews").style.borderBottom = "none"   
       }
-      store.commit('changeBlockPage',3)
+      store.commit('changeBlockPage',2)
 }
 function reviewsGenerator2(){
      infosList.value = !infosList.value
@@ -58,7 +61,7 @@ function reviewsGenerator2(){
       }else {
         document.getElementById("Reviews3").style.borderBottom = "none"   
       }
-      store.commit('changeBlockPage',2)
+      store.commit('changeBlockPage',3)
 }
 onMounted(
   ()=>{

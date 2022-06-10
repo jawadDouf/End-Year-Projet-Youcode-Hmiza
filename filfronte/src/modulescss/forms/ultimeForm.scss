@@ -1,0 +1,97 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+
+.overlay{
+    width: 100vw;
+    height: 200vh;
+    background-color: rgba(0, 0, 0, 0.623);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    cursor:pointer;
+  }
+.container{
+    position: absolute;
+    top: 35%;
+    left: 32%;
+    z-index: 999;
+    width:420px;
+    background-color: white;
+    border-radius: 10px;
+    font-family: $third-font;
+    border: #0c4aad 1px solid;
+.form{
+    width:100%
+    
+}
+}
+
+
+.title{
+    @include flex($direction:row,$justify-content:flex-start);
+    margin-block: 20px;
+    padding-block: 10px;
+    padding-inline: 15px;
+p{
+    margin-left: auto;
+    background-color:rgba(175, 175, 175, 0.934) ;
+    padding: 3px;
+    cursor: pointer;
+}
+}
+.field{
+    @include flex($direction:row,$justify-content:flex-start);
+    margin-block: 20px;
+    padding-block: 10px;
+    padding-inline: 15px;
+    
+input{
+    padding-block: 7px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(175, 175, 175, 0.934);
+    margin-left: 17%;
+    // padding-left: 3px;
+    @include smallTablet{
+        width: 80%;
+        margin-block: 10px;
+    }
+    @include mobile{
+        width: 80%;
+        margin-block: 10px;
+    }  
+}
+textarea{
+    padding-block: 7px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(175, 175, 175, 0.934);
+    height:70px;
+    margin-left: 8%;
+
+}
+}
+.submitField{
+    @include flex($direction:row,$justify-content:flex-end);
+    background-color: rgb(231, 231, 231);
+    padding-block: 10px;
+    padding-right: 7px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+
+button{
+    padding-inline: 25px;
+    padding-block: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0c4aad;
+    color: white;
+
+}
+p{
+    margin-right: 14px;
+    cursor: pointer;
+}
+}

@@ -35,8 +35,6 @@ import { ref } from "vue";
 import profileHeader from "./profileHeader.vue";
 const props = defineProps({
     product : Array,
-    
-
 })
 var productsList = ref(true)
 var headerElements = ["Stores","Reviews","More Infos"]
