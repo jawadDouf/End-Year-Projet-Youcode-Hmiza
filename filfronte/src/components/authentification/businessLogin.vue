@@ -45,9 +45,10 @@ function loginn(email,password){
           .then(function (response){
                console.log(response.data)
             if(response.data.business_id){
-              localStorage.setItem('id',response.data.business_id ); 
+              localStorage.setItem('id',response.data.business_id); 
+              localStorage.setItem('user',1)
                store.state.navSwitcher = localStorage.getItem('id');
-               router.push({name: 'businessProfileView'})
+               router.push({name: 'profileView'})
             }
           })
           .catch(function (response) {

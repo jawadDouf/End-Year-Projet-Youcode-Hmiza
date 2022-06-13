@@ -24,14 +24,13 @@
       }
     
       public function updateReview($data){
-        $this->db->query('UPDATE review SET titre = :titre, description = :description , produit_business_id = :produit_business_id , note = :note ,utilisateur_id = :utilisateur_id WHERE id = :id');
+        $this->db->query('UPDATE review SET titre = :titre, description = :description , note = :note WHERE review_id = :id');
         // Bind values
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':titre', $data['titre']);
         $this->db->bind(':description', $data['description']);
-        $this->db->bind(':produit_business_id', $data['produit_business_id']);
         $this->db->bind(':note', $data['note']);
-        $this->db->bind(':utilisateur_id', $data['utilisateur_id']);
+        // $this->db->bind(':utilisateur_id', $data['utilisateur_id']);
         //Execute
         if($this->db->execute()){
           return true;
@@ -41,7 +40,7 @@
       }
 
       public function deleteReview($id){
-        $this->db->query('DELETE FROM review WHERE id = :id');                 
+        $this->db->query('DELETE FROM review WHERE review_id = :id');                 
         // Bind values
         $this->db->bind(':id',$id);
         // Execute
@@ -68,11 +67,11 @@
       }
 
       
-
+      
       public function getReviewOfUser($id){
         $this->db->query('SELECT * FROM review 
                           INNER JOIN produit_business      
-                          WHERE utilisateur_id = :id
+                          ON utilisateur_id = :id
                           And review.produit_business_id = produit_business.id');       
         $this->db->bind(':id',$id);
         $results = $this->db->resultSet();
@@ -85,7 +84,24 @@
         return $data;
       }
 
-    }
+      public function latestReviews($id){
+        $this->db->query('SELECT * FROM review 
+        INNER JOIN produit_business
+        ON review.produit_business_id = produit_business.id
+        INNER JOIN business
+        ON business.business_id = produit_business.business_id
+        AND produit_business.business_id = :id');
+    
+        $this->db->bind(':id', $id);
+        $results = $this->db->resultSet();
+         return $results; 
+      }
+
+  }
+
+    
+
+  
 
 
 

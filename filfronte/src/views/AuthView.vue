@@ -25,7 +25,16 @@ import businessRegisterPageOne from "@/components/authentification/businessRegis
 import BusinessRegisterPageTwo from "@/components/authentification/businessRegisterPageTwo.vue"
 import BusinessRegisterPageThree from "@/components/authentification/businessRegisterPageThree.vue"
 import BusinessRegisterPageFour from "@/components/authentification/businessRegisterPageFour.vue"
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
+import {useStore} from "vuex"
+  
+const store = useStore()
+
+onMounted(
+  () => {
+     store.commit('changeSearch',false)
+  }
+)
 </script>
 
 <style lang="scss"  module>

@@ -74,7 +74,15 @@
     $row = $this->db->single();
     return $row;
   }
-
+  public function getOneProduct($id){
+    $this->db->query('SELECT * FROM Produits
+                       WHERE produit_id = :id
+');
+// Bind value 
+$this->db->bind(':id', $id);
+$row = $this->db->single();
+return $row;
+}
 
   
 }

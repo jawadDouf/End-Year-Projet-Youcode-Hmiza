@@ -1,5 +1,10 @@
 <template>
-<Nav/>
+<!-- <Nav/> -->
+<div :class="home.cover">
+<img src="@/assets/image2.jpg" alt="coverImg" />
+<div :class="home.overlay"></div>
+<h1>Our Goal is to Improve the consumer Business Relation</h1>
+</div>
 <div :class="home.secSection">
  <h1 :class="home.secSection_title">Our Services</h1>
  <div :class="home.secSection_elements">
@@ -74,5 +79,16 @@
 
 <script setup>
 import home from "../modulescss/homeView/home.scss"
-import Nav from "../components/globalComp/nav.vue"
+import Nav from "../components/globalComp/nav2.vue"
+import { onMounted } from 'vue';
+
+import {useStore} from "vuex"
+  
+const store = useStore()
+
+onMounted(
+  () => {
+     store.commit('changeSearch',false)
+  }
+)
 </script>

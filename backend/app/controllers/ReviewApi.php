@@ -78,18 +78,15 @@ class reviewApi extends Controller {
     header('Acces-Control-Allow-Headers: Acces-Control-Allow-Methods,Content-Type,Acces-Control-Allow-Headers,Authorization,X-Requested-With');
     $postedData = json_decode(file_get_contents("php://input"));
     $data = [
-      'id' => $POST['id'],
-      'titre' => $POST['titre'],
-      'description' => $POST['description'],
-      'note' => $POST['note'],
-      'produit_business_id' => $POST['produit_business_id'],
-      'business_id' => $POST['business_id'],
+      'id' => $_POST['id'],
+      'titre' => $_POST['titre'],
+      'description' => $_POST['description'],
+      'note' => $_POST['note'],
+
       'id_err' => '',
       'titre_err' => '',
       'description_err' => '',
       'note_err' => '',
-      'produit_business_id_err' => '',
-      'business_id_err' => '',
       'id_err' => ''
     ];
     if (empty($data['titre'])) {
@@ -101,24 +98,20 @@ class reviewApi extends Controller {
     if (empty($data['note'])) {
       $data['note_err'] = 'x';
     }
-    if (empty($data['produit_business_id'])) {
-      $data['movieName_err'] = 'x';
-    }
     if (empty($data['id'])) {
       $data['id_err'] = 'x';
     }
-    if (empty($data['business_id'])) {
-      $data['business_id_err'] = 'x';
-    }
+  
     // Make sure no errors
     if (
-      empty($data['titre_err']) && empty($data['description_err']) && empty($data['note_err']) && empty($data['produit_business_id_err'])
+      empty($data['titre_err']) && empty($data['description_err']) && empty($data['note_err']) 
       && empty($data['id_err'])
-    ) {
+      )
+     {
       // Validated
-      if ($this->reviewModel->updateReview($data)) {
+      if ($this->reviewModel->updateReview($data) && $this->produit_businessModel->updateNote($data)) {
         $arr = array(
-          'messnote' => 'User Updated'
+          'messnote' => 'review Updated'
         );
         echo json_encode($arr);
       } else {
@@ -156,4 +149,9 @@ class reviewApi extends Controller {
       }
     }
   }
+
+  public function getLatestReviews($id){
+    $reviews = $this->reviewModel->latestReviews($id);
+    echo json_encode($reviews);
+   }
 }

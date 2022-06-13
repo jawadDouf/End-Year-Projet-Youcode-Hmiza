@@ -3,9 +3,10 @@ import HomeView from '../views/HomeView.vue'
 import AuthView from '../views/AuthView.vue'
 import productsView from '../views/productsView.vue'
 import oneProductView from '../views/oneProductView.vue';
-import businessProfileView from '../views/businessProfileView.vue';
-import userProfileVue from '../views/userProfileVue.vue';
+// import businessProfileView from '../views/businessProfileView.vue';
+// import userProfileVue from '../views/userProfileVue.vue';
 import oneBusProView from '../views/oneBusProView.vue'
+import profileView from "../views/profileView.vue"
 const routes = [
   {
     path: '/',
@@ -33,15 +34,15 @@ const routes = [
     component: oneProductView
   }, 
   {
-    path: '/businessProfileView',
-    name: 'businessProfileView',
-    component: businessProfileView
+    path: '/profileView',
+    name: 'profileView',
+    component: profileView
   }, 
-  {
-    path: '/userProfileVue',
-    name: 'userProfileVue',
-    component: userProfileVue
-  },
+  // {
+  //   path: '/userProfileVue',
+  //   name: 'userProfileVue',
+  //   component: userProfileVue
+  // },
   {
     path: '/businessProfileView/:id',
     name: 'oneBusProView',

@@ -38,8 +38,10 @@
       }
   }
     public function updateNote($data){
+
       $product = $this->getOneProduct($data['produit_business_id']);
-      $note = $product->produit_note . $data['note'] / 2;
+      $note = ($product->produit_note + $data['note']) / 2;
+      echo $note;
       $this->db->query('UPDATE produit_business SET produit_note = :produit_note  WHERE id = :id');
       // Bind values
       $this->db->bind(':produit_note', $note);
@@ -108,7 +110,7 @@
    }
 
     
-
+  
     // public function deleteProduit($id){
     //   $this->db->query('DELETE  FROM produit_business WHERE id = :id');                 
     //   // Bind values

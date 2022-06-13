@@ -1,18 +1,20 @@
 <template>
   <div :class="product.container">
   <div :class="product.image">
-  <img :src="oneProduct.produit_img" alt="" style="height:210px">
+  <img :src="oneProduct.produit_img" alt="" >
   </div>
   <div :class="product.infos">
-  <h3> {{ oneProduct.produit_nom }}</h3>
+  <h3 > {{ oneProduct.produit_nom }}</h3>
   <div :class="product.categories">
-  <span :class="product.span1">Product</span>
-  <span :class="product.span2">Technologie</span>
-  <span :class="product.span3">Phone</span>
+  <span :class="product.span1">{{oneProduct.produit_categorie}}</span>
+  <span :class="product.span2">{{oneProduct.produit_souscategorie}}</span>
+  <span :class="product.span3">{{oneProduct.produit_souscategorie2 }}</span>
   </div>
-  <div :class="product.infosContainer">
+  <p>{{ oneProduct.produit_description}}</p>
+  <!-- <p :class="product.message">Click on learn more to check prices and ratings</p> -->
+  <!-- <div :class="product.infosContainer">
    
-  </div>
+  </div> -->
   <router-link :to ="{ name:'oneProductView',params : {id : oneProduct.produit_id , oneProduct : oneProduct}}">
    <span :class="product.span4">
   Learn More >>

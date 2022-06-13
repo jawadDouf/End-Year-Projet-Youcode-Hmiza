@@ -2,7 +2,6 @@
 @import "@/sass/mexins.scss";
 @import "@/sass/mediaquerise.scss";
 .overlay{
-    
     width: 100vw;
     height: 200vh;
     background-color: rgba(0, 0, 0, 0.623);
@@ -13,7 +12,7 @@
   }
 .formContainer{
     position: absolute;
-    top: 50%;
+    top: 90%;
     left: 20%;
     @include tablet{
         left: 9%; 
@@ -22,7 +21,7 @@
         left:25%;
     }
     @include mobile{
-        left:23%;
+        left:18%;
     }
     background-color: white;
     width: auto;
@@ -61,13 +60,13 @@ h2{
 ul{
     position: absolute;
     left: 1.5%;
-    top: 91px;
+    top: 100px;
     
 li{
     
     border-radius: 6px;
     list-style: none;
-    padding-block: 6px;
+    padding-block: 8px;
     background-color: white;
     color: black;
     padding-inline: 28px;
@@ -164,7 +163,6 @@ input{
     @include flex($direction:column,$justify-content:center);
     width: auto;
 .block{
-
 margin-block: 18px;
 .input{
     padding-block: 7px;
@@ -217,3 +215,6 @@ margin-block: 18px;
      font-size: 14px;
  }
  }
+
+
+

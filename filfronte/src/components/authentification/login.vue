@@ -45,8 +45,10 @@ function loginn(email,password){
           .then(function (response){
             if(response.data.id){
               localStorage.setItem('id',response.data.id ); 
+              localStorage.setItem('user',2)
+             
               store.state.navSwitcher = localStorage.getItem('id');
-               router.push({name: 'userProfileVue'})
+               router.push({name: 'profileView'})
             }
           })
           .catch(function (response) {

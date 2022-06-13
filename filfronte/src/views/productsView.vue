@@ -106,8 +106,10 @@ const store = useStore()
 onMounted(
   () => {
          store.dispatch('getProducts');
-         
-})
+         store.commit('changeSearch',true)
+}
+
+)
 
 function filter2(el){
   shower1.value = !shower1.value

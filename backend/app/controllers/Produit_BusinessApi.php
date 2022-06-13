@@ -84,7 +84,12 @@
   public function getproduitsbusiness($id)
   {
          $produits = $this->produit_businessModel->getProductsBusiness($id);
-         echo json_encode($produits);
+         $produit = $this->produitModel->getOneProduct($id);
+         $data = [
+          "produits" => $produits,
+          "produit" => $produit
+         ];
+         echo json_encode($data);
   }
 
   public function updateProduit()
@@ -162,6 +167,7 @@
     }
   }
 
+   
  }
 
 

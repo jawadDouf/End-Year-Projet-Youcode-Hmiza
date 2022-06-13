@@ -6,6 +6,8 @@ export default createStore({
     products : [],
     authCond : 0,
     navSwitcher : undefined,
+    actor : undefined,
+    navSearch : true,
     user : {
       nom : null,
       prenom : null,
@@ -30,6 +32,7 @@ export default createStore({
 
   },
   getters: {
+    
   },
   mutations: {
     fillProducts(state,product){
@@ -43,6 +46,9 @@ export default createStore({
     },
     changeAuth(state,loader){
       state.authCond = loader;
+    },
+    changeSearch(state,loader){
+      state.navSearch = loader
     },
     // modify user Object
     modifyUser(state,user){

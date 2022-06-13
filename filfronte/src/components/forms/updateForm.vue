@@ -1,7 +1,7 @@
 <template>
      <div @click="$emit('event')" :class="form.overlay"></div>
       <div :class="form.container">
-        <form :class="form.form" @submit.prevent="addReview">
+        <form :class="form.form" @submit.prevent="updateReview">
          <div :class="form.title">
               <h3>Add A Review</h3>
               <p @click="$emit('event')"> &#10060;</p> 
@@ -32,7 +32,7 @@
          </div>
          <div :class="form.submitField">
           <p @click="$emit('event')">Cancel</p>
-          <button>Add Review</button>  
+          <button>update Review</button>  
          </div>
         
         </form>
@@ -53,31 +53,36 @@ import form from "../../modulescss/forms/ultimeForm.scss"
 import { onMounted, ref } from "vue"
 import axios from "axios";
 // import { response } from "express";
-
 const props = defineProps({
-   id : Number
+   review : Object
 })
-let inputValue = ref()
-let title = ref("")
-let description = ref("")
+let inputValue = ref(props.review.note)
+let title = ref(props.review.titre)
+let description = ref(props.review.description)
+
+onMounted(
+         axios.get("http://localhost/filrouge/ReviewApi/getProductReviews",props.review.review_id)
+      .then(
+         response => console.log(response.data)
+      )
 
 
+)
 
-function addReview(){
+
+function updateReview(){
       var formData = new FormData()
+      formData.append('id',props.review.review_id)
       formData.append('titre',title.value)
       formData.append('description',description.value)
       formData.append('note',inputValue.value)
-      formData.append('utilisateur_id',localStorage.getItem('id'))
-      formData.append('produit_business_id',props.id)
-      axios.post("http://localhost/filrouge/ReviewApi/addReview",formData)
+      axios.post("http://localhost/filrouge/ReviewApi/updateReview",formData)
       .then(
          response => console.log(response.data)
       ).then(()=>{
       inputValue.value = "",
       title.value = " ",
-      description.value = " "
-         
+      description.value = " "  
       })
       
    }

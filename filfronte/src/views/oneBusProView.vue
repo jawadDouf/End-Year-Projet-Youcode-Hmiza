@@ -20,12 +20,12 @@
   <h3 :class="one.h3"><span :class="one.spans2">Price :</span> {{oneProduct.produit_prix }}$</h3>
   <h3 :class="one.h3"><span :class="one.spans2">Store Location :</span> <span :class="one.businessName">{{oneProduct.business_nom }}</span></h3>
   <h3 :class="one.h3"><span :class="one.spans2">Store :</span> <span >{{oneProduct.business_adresse }},{{oneProduct.business_location}}</span></h3>
- <button @click="addCond = !addCond">Add Review</button>
+ <button @click="addCond = !addCond" v-if="actor == 2">Add Review</button>
   </div> 
  </div>
    <profileHeader :headerElements=headerElements />
-   <reviewsList :id="id"/>
-   <ultimeFormVue v-if="addCond" @event="addCond = !addCond" />
+   <reviewsList :id="id" />
+   <ultimeFormVue :id="id" v-if="addCond" @event="addCond = !addCond" />
 
 
 
@@ -38,15 +38,18 @@ import { ref } from 'vue'
 import one from "../modulescss/blocks/oneProduct.scss"
 import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router'
+import {useStore} from "vuex"
+
 import profileHeader from "../components/blocks/profileHeader";
 import reviewsList from "../components/reviews/listProReviews.vue"
 import ultimeFormVue from '@/components/forms/ultimeForm.vue';
+const store = useStore()
 const route = useRoute()
 let id = route.params.id
 let oneProduct = ref("");
 var headerElements = ["Reviews","Best Reviews","Worst Reviews"]
 let addCond = ref(false)
-
+let actor = ref(localStorage.getItem('user'))
 onMounted(
     () =>{
      axios.get("http://localhost/filrouge/Produit_BusinessApi/getoneproduct/" + id)
@@ -54,9 +57,8 @@ onMounted(
               oneProduct.value = response.data 
           }   
           )
-     
-          
-    }
+    },
+    
 )
 
 

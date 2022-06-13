@@ -4,13 +4,12 @@
 .nav{
     font-family: $primary-font;
     background-color: hsla(225, 50%, 35%, 1);
-    width: 100%;
+    // width: 100%;
     // margin: auto;
     border-radius: 0;
     margin-top:0px;
     @include flex($direction:row,$justify-content:flex-start);
     // gap: 12%;
-    padding-block:15px;
     @include mobile{
     padding-block:5px;
     }
@@ -19,7 +18,7 @@
      list-style: none;
     //  @include flex($direction:row);
     //  margin-left: 6%;
-    align-self: center;
+    // align-self: center;
      color: white;
      margin-left: 9px;
      padding-top: 3px;
@@ -181,7 +180,7 @@ p{
     transition: 0.4s;
     // line-height: 40px;
     width: 0px;
-
+    margin-left: auto;
 }
 .searchBox:hover > .searchInput {
     width: 150px;
@@ -216,6 +215,7 @@ p{
     color: 0c4aad;
     text-decoration: none;
     cursor: pointer;
+   
 }
 .buttonAuth{
     padding-inline: 16px;
@@ -229,6 +229,7 @@ p{
     font-weight: bolder;
     border: 1px #0c4aad solid;
     cursor: pointer;
+    margin-left: right;
     @include mobile{
         padding-inline: 10px;
         padding-block: 8px;  
@@ -257,4 +258,9 @@ p{
     margin-right: 10px;
     cursor: pointer;
     
+}
+.buttonAuth_container{
+    @include flex($direction:row);
+    margin-left: auto;
+   
 }

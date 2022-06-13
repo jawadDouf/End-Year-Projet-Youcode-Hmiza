@@ -3,9 +3,9 @@
 @import "@/sass/mediaquerise.scss";
 .container{
    margin-top: 20px;
-   width: 37%;
+   width: 40%;
    min-width: 350px;
-   height: 180px;
+   height: auto;
    border: 1px solid #0000005d;
    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
    border-radius: 10px;
@@ -40,6 +40,7 @@ img{
     grid-template-columns: 1fr 1fr;
     background-color: rgb(177, 177, 177);
     border-radius: 6px;
+    height: auto;
 img{
     width: 90%;
     height: auto;
@@ -99,4 +100,21 @@ p{
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+.footer{
+   
+    margin-top: 6px;
+    border-radius: 6px;
+    background-color:rgb(177, 177, 177);
+    padding-block: 6px;
+    @include flex($direction:row);
+    gap: 130px;
+p{
+    display: inline;
+    @include flex($direction:row);
+    gap: 5px;
+    cursor: pointer;
+    
+    
+}
 }

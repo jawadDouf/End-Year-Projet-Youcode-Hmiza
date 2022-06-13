@@ -11,7 +11,6 @@
   <img :src="review.produit_img2"  style="width:150px;height:auto"   alt="">
  <div :class="reviewStyle.productInfos">
    <p>
-   <span :class="reviewStyle.product_title">Store :</span><span :class="reviewStyle.product_answer"></span>
    </p>
    <p>
    <span :class="reviewStyle.product_title">Price :</span><span :class="reviewStyle.product_answer">{{review.produit_prix}}$</span> 
@@ -34,10 +33,7 @@
 </p>
 </div>
 <p :class="reviewStyle.body">{{ review.description }}</p>
-<div :class="reviewStyle.footer">
-   <p @click="updateForm = !updateForm"><span><fa :class="reviewStyle.star" :icon="['fas','file-pen']"/></span><span>Update</span></p>
-   <p @click="delet(review.id)"><span><fa :class="reviewStyle.star" :icon="['fas','trash-can']"/></span><span>Delete</span></p>
-</div>
+
 </div>
   <updateform v-if="updateForm" :review="review" @event="updateForm = !updateForm" />
 
@@ -71,7 +67,7 @@ var business = ref({
 onMounted(
        ()=>{
        axios
-        .get('http://localhost/folderr/utilisateureApi/getOneUser/' + localStorage.getItem('id'))
+        .get('http://localhost/folderr/utilisateureApi/getOneUser/' + props.review.utilisateur_id)
         .then(response => {
                 user.value.nom = response.data.nom
                 user.value.prenom = response.data.prenom

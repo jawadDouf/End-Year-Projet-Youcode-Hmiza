@@ -8,6 +8,7 @@
  display: grid;
  grid-template-columns: 40% 60%;
  padding: 20px;
+ padding-bottom: 2px;
  border: solid 1px rgba(0, 0, 0, 0.429);
  border-radius: 10px;
  cursor: pointer;
@@ -19,17 +20,35 @@
     grid-template-columns: 1fr;
     min-width: 150px;
     width: 40%;
+ padding-bottom: 5px;
+
  }
  @include mobile{
     width: 90%;
     min-width: 300px;
    
  }
+p{
+    padding-left: 2px;
+    margin-block: 10px;
+    line-height: 1.5;
+    @include mobile{
+        // line-height: 1;
+        font-size: 12px;
+    }
+}
 .image{
     padding: 10px;
 img{
-    width: 100%;
-    height: auto; 
+     width: 100%;
+     height:200px; 
+     @include tablet{
+     height:auto; 
+         
+     }
+    @include mobile{
+        height:140px
+    }
 }
     
 }
@@ -75,5 +94,13 @@ img{
 h3{
     @include tablet{
         font-size: 16px;
+        padding-left: 4px;
+
+    }
+}
+.infos{
+h3{
+    padding-left: 3px;
+        
     }
 }

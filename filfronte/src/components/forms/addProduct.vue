@@ -8,6 +8,10 @@
 <h2>Add a Product</h2>
 <form @submit.prevent="addProduct" :class="addForm.form" id="form" v-if="formChanging">
 <div :class="addForm.searchInput">
+   <div>
+
+    
+   </div>
   <input type="text" list="products" v-model="inputValue"  id="input"
    placeholder="Choose Or Enter Product" @keyup="getProduct"
    >
@@ -21,6 +25,7 @@
   </datalist> -->
 </div>
 <div :class="addForm.price">
+
   <input type="number" v-model="price"  placeholder="Enter a Price">
 </div>
 <button :class="addForm.submitButton">Add Product</button>
