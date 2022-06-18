@@ -51,7 +51,22 @@
       return $row;
 }
 
+ public function getAll(){
+  $this->db->query('SELECT * FROM business
+    ');
+    $results = $this->db->resultSet();
+// $reviewsNumber = $results->$this->db->rowCount();
+    return $results;
+ }
 
+ public function search($business){
+  $business_string = $business . "%";
+  $this->db->query('SELECT * FROM business
+                    WHERE business.business_nom  LIKE :business');
+  $this->db->bind(':business', $business_string);
+  $results = $this->db->resultSet();
+   return $results;
+}
 
 
 

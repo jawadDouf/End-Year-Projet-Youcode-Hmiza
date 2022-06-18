@@ -8,7 +8,7 @@
        <div :class="bregister2.container_form_field">
        <label :class="bregister2.label">City</label>
        <select  v-model="business.business_location" name="Cities"  :class="bregister2.input">         
-         <option v-for="city in cities"  >{{ city }}</option>
+         <option v-for="city in cities">{{ city }}</option>
        </select>
        </div>
        <div :class="bregister2.container_form_field">

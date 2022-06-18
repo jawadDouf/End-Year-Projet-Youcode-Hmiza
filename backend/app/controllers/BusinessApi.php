@@ -122,16 +122,27 @@ public function login()
   }
 }
 
-public function getbusiness($id)
+    public function getbusiness($id)
   {
          $business = $this->businessModel->getBusinessById($id);
          echo json_encode($business);
   }
 
+    public function getAllBusinessess(){
+        $businesses = $this->businessModel->getAll();
+        echo json_encode($businesses);
+    }
 
-
+    public function businessesSearch($business)
+  {
+    header('Acces-Control-Allow-Methods: GET');
+    header('Acces-Control-Allow-Headers: Acces-Control-Allow-Methods,Content-Type,Acces-Control-Allow-Headers,Authorization,X-Requested-With');
   
-
+    $businesses = $this->businessModel->search($business);
+    echo json_encode($businesses);
+  
+  }
+  
 
 
 

@@ -3,7 +3,7 @@
 
   <div :class="one.cantainer">
   <div :class="one.container_img"> 
-  <img :class="one.img"  :src="product[0]?.produit_img2" alt="mainImage" style="width:330px;height:360px">
+  <img :class="one.img"  :src="product[0]?.produit_img2" alt="mainImage" >
   </div>
   <div :class="one.container_infos"> 
   <p :class="one.p1">In publishing and graphic design and graphic design</p>
@@ -22,7 +22,9 @@
   </div> 
  </div>
   <div>
-  <block :product="product"/>
+  <profileHeader :headerElements=headerElements />
+  <block :product="product" v-if="$store.state.blockPage == 1"/>
+  <block  v-if="$store.state.blockPage == 2" :mainProduct="mainProduct"/>
   </div>
   
    
@@ -33,13 +35,18 @@
 import { ref } from "vue";
 import block from "../components/blocks/parentBlock.vue"
 import index from "../modulescss/products/index.scss"
+import profileHeader from "../components/blocks/profileHeader";
 import one from "../modulescss/blocks/oneProduct.scss"
 import two from "../modulescss/products/product.scss"
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router'
-import { onMounted } from "vue";
+import {useStore} from "vuex"
+  
 
+import { onMounted } from "vue";
+var headerElements = ["Local Stores","Professional Stores"]
 const route = useRoute()
+const store = useStore()
 let id = route.params.id
 var product = ref([])
 let mainProduct = ref("")
@@ -54,7 +61,7 @@ var exp = ref(10000000000000)
 var cheap = ref(0)
 onMounted(
   async ()=>{
-     await axios
+       await axios
         .get('http://localhost/filrouge/Produit_BusinessApi/getproduitsbusiness/' + id)
         .then(response => ( response.data.produits.forEach(element => {     
           if(response.data.length == 1){
@@ -84,13 +91,12 @@ onMounted(
         
          mainProduct.value = response.data.produit 
         )
-        )
-       
-  }
+        )  
+  })
   
  
 
-)
+
   
          
   

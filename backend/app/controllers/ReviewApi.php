@@ -129,14 +129,10 @@ class reviewApi extends Controller {
     }
   }
 
-  public function delete()
+  public function delete($id)
   {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $postedData = json_decode(file_get_contents("php://input"));
-      $data = [
-        'id' => $_POST['id']    
-      ];
-      if ($this->reviewModel->deleteReview($data['id'])) {
+   
+      if ($this->reviewModel->deleteReview($id)) {
         $arr = array(
           'messnote' => 'Review Deleted'
         );
@@ -148,10 +144,14 @@ class reviewApi extends Controller {
         echo json_encode($arr);
       }
     }
-  }
+  
 
   public function getLatestReviews($id){
     $reviews = $this->reviewModel->latestReviews($id);
+    echo json_encode($reviews);
+   }
+   public function getLastReview($id){
+    $reviews = $this->reviewModel->getLastReviewOfPb($id);
     echo json_encode($reviews);
    }
 }

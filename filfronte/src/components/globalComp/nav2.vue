@@ -6,7 +6,8 @@
  <div :class="index.ul">
     <p><router-link to="/" :class="index.links">Acceuil</router-link></p>
     <p><router-link to="/productsView" :class="index.links">Produits</router-link></p>
-    <p><router-link  to="/ProfileView" :class="index.links">Profile</router-link></p>
+    <p><router-link to="/businessesView" :class="index.links">Businesses</router-link></p>
+    <p @click="goToProfile()">Profile</p>
     <p :class="index.links">About</p>
  </div>
  
@@ -59,7 +60,10 @@ function logout(){
      router.push({name: 'AuthView'})
 
 }
-
+function goToProfile(){
+localStorage.removeItem("externLink")
+router.push({ name: 'profileView' })
+}
 </script>
 <style>
 

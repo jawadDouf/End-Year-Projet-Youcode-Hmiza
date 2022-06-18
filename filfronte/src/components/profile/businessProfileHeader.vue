@@ -37,14 +37,27 @@ import profileInfos from "../../modulescss/profile/busProfile.scss"
 import { ref } from "vue";
 import { onMounted } from "vue"
 let business = ref("")
+let externId = localStorage.getItem("externId")
 onMounted(
  ()=>{
-     axios
+      if(localStorage.getItem("externLink")){
+        axios
+        .get('http://localhost/folderr/BusinessApi/getbusiness/' + localStorage.getItem('externId'))
+        .then(response => (
+            business.value = response.data
+        )  
+        )
+      }
+    else{
+    axios
         .get('http://localhost/folderr/BusinessApi/getbusiness/' + localStorage.getItem('id'))
         .then(response => (
             business.value = response.data
         )  
         )
+
+    }
+     
  }
 
 )

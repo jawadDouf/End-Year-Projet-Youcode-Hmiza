@@ -34,9 +34,9 @@
 </p>
 </div>
 <p :class="reviewStyle.body">{{ review.description }}</p>
-<div :class="reviewStyle.footer">
+<div :class="reviewStyle.footer" v-if="!externLink">
    <p @click="updateForm = !updateForm"><span><fa :class="reviewStyle.star" :icon="['fas','file-pen']"/></span><span>Update</span></p>
-   <p @click="delet(review.id)"><span><fa :class="reviewStyle.star" :icon="['fas','trash-can']"/></span><span>Delete</span></p>
+   <p @click="dlt(review.review_id)"><span><fa :class="reviewStyle.star" :icon="['fas','trash-can']"/></span><span>Delete</span></p>
 </div>
 </div>
   <updateform v-if="updateForm" :review="review" @event="updateForm = !updateForm" />
@@ -52,12 +52,13 @@
 import axios from "axios";
 import { onMounted } from "vue";
 import reviewStyle from "../../modulescss/reviews/review.scss"
-import updateform from "../forms/updateForm"
+import updateform from "../forms/updateForm.vue"
 import { ref } from "vue";
 let updateForm = ref(false)
 let addCond = ref(false)
 const props = defineProps({
-    review : Object
+    review : Object,
+    id :Number
 })
 var user = ref({
     nom : ref(null),
@@ -67,29 +68,41 @@ var user = ref({
 var business = ref({
     business_id : ref(null)
 })
-
+let externLink = localStorage.getItem('externLink')
 onMounted(
        ()=>{
-       axios
+        if(localStorage.getItem("externLink")){
+         axios
+        .get('http://localhost/folderr/utilisateureApi/getOneUser/' + localStorage.getItem("externId"))
+        .then(response => {
+                user.value.nom = response.data.nom
+                user.value.prenom = response.data.prenom
+                user.value.img = response.data.img
+        }    
+        ) 
+        }else{
+         axios
         .get('http://localhost/folderr/utilisateureApi/getOneUser/' + localStorage.getItem('id'))
         .then(response => {
                 user.value.nom = response.data.nom
                 user.value.prenom = response.data.prenom
                 user.value.img = response.data.img
         }    
-        )
+        ) 
+        
+       
    
-   },
+   }}
    
 
 ),
 
 
-function delet(id){
+function dlt(id){
    let formdata = new FormData()
    formdata.append('id',id)
    axios
-        .post('http://localhost/filrouge/reviewApi/delete',formdata)
+        .post('http://localhost/filrouge/reviewApi/delete' + id)
         .then(response => {
                 console.log(response.data)
         }    

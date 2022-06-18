@@ -8,15 +8,15 @@
          </div>
          <div :class="form.field">
             <label for="title">Title</label>
-            <input v-model="title" type="text" name="title">
+            <input v-model="title" type="text" :class="form.input" name="title">
          </div>
          <div :class="form.field">
             <label for="description">Description</label>
-            <textarea v-model="description" type="text" name="description" />
+            <textarea v-model="description" type="text" :class="form.input" name="description" />
          </div>
          <div :class="form.field">
          <label for="">Rating</label>
-         <input type="range" v-model="inputValue"  min="0" max="10" list="number" />{{inputValue}}
+         <input type="range" v-model="inputValue"  min="0" max="10" list="number" :class="form.input" />{{inputValue}}
             <datalist id="number">
             <option>1</option>
             <option>2</option>
@@ -53,7 +53,7 @@ import form from "../../modulescss/forms/ultimeForm.scss"
 import { onMounted, ref } from "vue"
 import axios from "axios";
 // import { response } from "express";
-
+const emit = defineEmits(['event','event2'])
 const props = defineProps({
    id : Number
 })
@@ -79,7 +79,8 @@ function addReview(){
       description.value = " "
          
       })
-      
+      emit('event')
+      emit('event2')
    }
 
 

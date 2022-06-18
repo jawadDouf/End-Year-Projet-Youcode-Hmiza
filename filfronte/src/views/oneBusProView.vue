@@ -18,14 +18,14 @@
   <h3 :class="one.h3"><span :class="one.spans2">Rating :</span> {{oneProduct.produit_note}}/10</h3>
   
   <h3 :class="one.h3"><span :class="one.spans2">Price :</span> {{oneProduct.produit_prix }}$</h3>
-  <h3 :class="one.h3"><span :class="one.spans2">Store Location :</span> <span :class="one.businessName">{{oneProduct.business_nom }}</span></h3>
+  <h3 :class="one.h3"><span :class="one.spans2">Store Location :</span> <span @click="goToProfile(oneProduct.business_id)" :class="one.businessName">{{oneProduct.business_nom }}</span></h3>
   <h3 :class="one.h3"><span :class="one.spans2">Store :</span> <span >{{oneProduct.business_adresse }},{{oneProduct.business_location}}</span></h3>
  <button @click="addCond = !addCond" v-if="actor == 2">Add Review</button>
   </div> 
  </div>
    <profileHeader :headerElements=headerElements />
-   <reviewsList :id="id" />
-   <ultimeFormVue :id="id" v-if="addCond" @event="addCond = !addCond" />
+   <reviewsList :id="id" :oneReview="oneReview"/>
+   <ultimeFormVue :id="id" v-if="addCond" @event="addCond = !addCond" @event2="getLatestReview()"/>
 
 
 
@@ -45,23 +45,37 @@ import reviewsList from "../components/reviews/listProReviews.vue"
 import ultimeFormVue from '@/components/forms/ultimeForm.vue';
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 let id = route.params.id
 let oneProduct = ref("");
+let oneReview = ref(undefined);
 var headerElements = ["Reviews","Best Reviews","Worst Reviews"]
 let addCond = ref(false)
 let actor = ref(localStorage.getItem('user'))
 onMounted(
-    () =>{
+    ()=>{
      axios.get("http://localhost/filrouge/Produit_BusinessApi/getoneproduct/" + id)
           .then(response => {
               oneProduct.value = response.data 
+              
           }   
           )
     },
     
 )
-
-
+function getLatestReview(){
+  axios.get("http://localhost/filrouge/ReviewApi/getLatestReviews/" + id)
+          .then(response => {
+              oneReview.value = response.data 
+              console.log("uu",response.data[0])
+          }   
+          )
+}
+function goToProfile(id){
+localStorage.setItem("externLink",1)
+localStorage.setItem("externId",id)
+router.push({ name: 'profileView', params: { id: id} })
+}
 
 
 

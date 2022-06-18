@@ -8,10 +8,6 @@
 <h2>Add a Product</h2>
 <form @submit.prevent="addProduct" :class="addForm.form" id="form" v-if="formChanging">
 <div :class="addForm.searchInput">
-   <div>
-
-    
-   </div>
   <input type="text" list="products" v-model="inputValue"  id="input"
    placeholder="Choose Or Enter Product" @keyup="getProduct"
    >
@@ -31,30 +27,64 @@
 <button :class="addForm.submitButton">Add Product</button>
 </form>
 <form  @submit.prevent="addProductBusiness" v-if="!formChanging" :class="addForm.form2">
-   <div :class="addForm.block">
-   <input type="text" v-model="inputValue" :class="addForm.input" placeholder="Enter name of the product" />
-   <input type="file"  @change="sendImage($event)" :class="addForm.input" />
-   <input type="number" placeholder="Enter Price" v-model="price" :class="addForm.input" /> 
-   </div>  
-   <div :class="addForm.block">
-      <select  name="Profession Categorie:" v-model="categorie" value="choose The main Categorie" :class="addForm.input">
-      <option value="" disabled selected>choose The main Categorie</option>
-        <option>Services</option>
-        <option>Products</option>
-      </select>
-      <select  name="Profession Categorie:" v-model="categorie2"  :class="addForm.input">
-        <option value="" disabled selected>choose The sub Categorie</option>
-        <option v-for="option in options[categorie]" >{{ option }}</option>
-      </select>
-      <select  name="Profession Categorie:" v-model="categorie3"  :class="addForm.input">
-      <option value="" disabled selected>choose The last Categorie</option>
-        <option v-for="option in options[categorie2]" >{{ option }}</option>
-      </select>
-   </div>  
-   <div :class="addForm.block">
+   <div :class="addForm.blocks">
+      <div :class="addForm.field">
+        <label for="">Prod. name</label>
+        <input type="text" v-model="inputValue"  :class="addForm.input" placeholder="Enter name of the product" />
+        </div>
+        <div :class="addForm.field">
+        <label for="">Image</label>
+        <input type="file"  @change="sendImage($event)" :class="addForm.input" />
+        </div>
+   </div>
+   
+
+    <div :class="addForm.blocks">
+      <div :class="addForm.field">
+        <label for="">Price</label>
+        <input type="number" placeholder="Enter Price" v-model="price" :class="addForm.price" /> 
+        </div>
+        <div :class="addForm.field">
+        <label for="">Ctegorie</label>
+          <select  name="Profession Categorie:" v-model="categorie" value="choose The main Categorie" :class="addForm.input">
+            <option value="" disabled selected>choose The main Categorie</option>
+              <option>Services</option>
+              <option>Products</option>
+            </select>
+        </div>
+
+    </div>
+   
+   <div :class="addForm.blocks">
+        <div :class="addForm.field">
+              <label for="">Second Categorie</label>
+              <select  name="Profession Categorie:" v-model="categorie2"  :class="addForm.input">
+                <option value="" disabled selected>choose The sub Categorie</option>
+                <option v-for="option in options[categorie]" >{{ option }}</option>
+              </select>
+          </div>
+            <div :class="addForm.field">
+                <label for="">Third Categorie</label>
+                <select  name="Profession Categorie:" v-model="categorie3"  :class="addForm.input">
+                  <option value="" disabled selected>choose The last Categorie</option>
+                  <option v-for="option in options[categorie2]" >{{ option }}</option>
+              </select>
+          </div>
+   </div>
+    
+      
+      
+   <div :class="addForm.blocks">
+    <div :class="addForm.field">
+   <label for="">Description</label>
    <textarea type="text" rows="4" cols="1000" :class="addForm.input" v-model="description"/>
    </div>  
-   <button :class="addForm.submitButton2">Add Product</button>
+   </div>
+   <div :class="addForm.submitField">
+    <p @click="$emit('event')">Cancel</p>
+     <button :class="addForm.submitButton2">Add Product</button>
+   </div>
+ 
 
 
 
@@ -75,6 +105,10 @@ import addForm from "../../modulescss/forms/addForm.scss"
 import { useStore } from "vuex";
 import { ref } from "vue";
 const store = useStore()
+const emit = defineEmits(['event','event2'])
+const props = ({
+  businessProducts : Array
+})
 let formChanging = ref(true)
 let inputValue = ref("")
 let price = ref()
@@ -125,14 +159,14 @@ function choosePro(product){
   store.state.products = []
    
 }
-function addProduct(){
+async function addProduct(){
     var formData = new FormData()
     console.log(image.value)
     formData.append('produit_id',productId.value)
     formData.append('business_id',localStorage.getItem('id'))
     formData.append('produit_prix',price.value)
     formData.append('produit_img2',image.value)
-     axios.post('http://localhost/filrouge/Produit_BusinessApi/addproduit_business', formData)
+    await  axios.post('http://localhost/filrouge/Produit_BusinessApi/addproduit_business', formData)
           .then(function (response) {
             console.log(formData),
             console.log(response)
@@ -143,13 +177,15 @@ function addProduct(){
      price.value = ref("") 
      image.value = ref("") 
      inputValue.value = ref("") 
+     emit('event2')
+     emit('event')
+     
 }
 function addForms(){
    formChanging.value = !formChanging.value
 }
 function addProductBusiness(){
   var formData = new FormData()
-  
   formData.append('business_id',localStorage.getItem('id'))
   formData.append('produit_id',localStorage.getItem('lastId'))
   formData.append('produit_prix',price.value)
@@ -168,4 +204,5 @@ function addProductBusiness(){
             console.log(response);
           });
 }
+
 </script>

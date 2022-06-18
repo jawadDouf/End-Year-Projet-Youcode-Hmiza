@@ -4,7 +4,7 @@
 <div :class="reviewStyle.user">
  <img :src="review.img" alt="">
  <div :class="reviewStyle.userInfos">
- <h3> {{review.nom }}  {{review.prenom}} </h3>
+ <h3 @click="goToProfile(review.id)"> {{ review.nom }}  {{review.prenom}} </h3>
  <p> {{review.published_at}} </p>
  </div>
 </div>
@@ -31,13 +31,22 @@
 import axios from "axios";
 import { onMounted } from "vue";
 import reviewStyle from "../../modulescss/reviews/review.scss"
+import { useRouter, useRoute } from 'vue-router'
+
 import { ref } from "vue";
+
+const route = useRoute()
+const router = useRouter()
 const props = defineProps({
   review : Object
 })
    
 
-
+function goToProfile(id){
+localStorage.setItem("externLink",2)
+localStorage.setItem("externId",id)
+router.push({ name: 'profileView'})
+}
 
 
 

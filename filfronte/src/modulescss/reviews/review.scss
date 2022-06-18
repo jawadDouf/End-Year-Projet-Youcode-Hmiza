@@ -22,6 +22,9 @@ p{
     font-size: 14px;
     color: rgb(83, 82, 82); 
 }
+h3{
+    cursor: pointer;
+}
 }
 img{
     width:35px;
@@ -35,12 +38,14 @@ img{
 }
 .product{
     // margin-bottom: 50px;
+    margin-block: 10px;
     padding-block: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: rgb(177, 177, 177);
+    background-color: rgba(225, 225, 225, 0.39);
     border-radius: 6px;
     height: auto;
+    border: 1px solid black;
 img{
     width: 90%;
     height: auto;
@@ -105,10 +110,11 @@ p{
    
     margin-top: 6px;
     border-radius: 6px;
-    background-color:rgb(177, 177, 177);
+    background-color:rgba(225, 225, 225, 0.39);
     padding-block: 6px;
     @include flex($direction:row);
     gap: 130px;
+    border: 1px solid black;
 p{
     display: inline;
     @include flex($direction:row);

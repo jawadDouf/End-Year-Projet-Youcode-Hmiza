@@ -1,10 +1,9 @@
 <template>
   
-  <div :class="listProduct.container">
+  <div :class="listProduct.container" >
      <div :class="listProduct.imgContainer">
      <img :src="oneProduct.produit_img2" :alt="oneProduct.nom">
      </div>
-      
       <div :class="listProduct.container_infos">
       <h3>{{ oneProduct.produit_nom}}</h3>
       <p>{{oneProduct.produit_description}}</p>
@@ -36,12 +35,12 @@
       </p>
       </div> 
       </div>
-     <div :class="listProduct.footer">
-         <button @click.prevent="updateFormCond  = !updateFormCond">Update</button>
+     <div :class="listProduct.footer" >
+         <button v-if="externLink" @click.prevent="updateFormCond = !updateFormCond">Update</button>
          <button><router-link :class="listProduct.linkk" :to ="{ name:'oneBusProView',params : {id : oneProduct.id , oneProduct:oneProduct}}">
          See More
          </router-link></button>
-         <button @click.prevent="dlt(oneProduct.produit_id)">Delete</button>
+         <button v-if="externLink" @click.prevent="dlt(oneProduct.id,$event)">Delete</button>
      </div> 
      
   </div>
@@ -52,9 +51,11 @@
 import axios from "axios";
 import listProduct from "../../modulescss/products/listProduct.scss"
 import updateProductVue from "../forms/updateProduct.vue";
+import { useRouter, useRoute } from 'vue-router'
 import { ref } from "vue";
-
+let user = localStorage.getItem('externId')
 var updateFormCond = ref(false)
+const router = useRouter()
 const props = defineProps({
     oneProduct : Object
 })
@@ -62,13 +63,17 @@ function met(){
   
   console.log(updateFormCond.value)
 }
-function dlt(id){
+function dlt(id,event){
      axios
-     .delete('http://localhost/folderr/Produit_BusinessApi//delete/' + localStorage.getItem('id'))
+     .post('http://localhost/filrouge/Produit_BusinessApi/delete/' + id)
      .then(response => console.log(response.data))
+      event.target.parentElement.parentElement.remove();
 }
 
+function getToProduct(id){
 
+router.push({  path: '/businessProfileView/' + id })
+}
 
 
 

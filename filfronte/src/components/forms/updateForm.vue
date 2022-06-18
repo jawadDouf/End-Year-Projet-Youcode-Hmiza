@@ -8,7 +8,7 @@
          </div>
          <div :class="form.field">
             <label for="title">Title</label>
-            <input v-model="title" type="text" name="title">
+            <input v-model="title" type="text" :class="form.input" name="title">
          </div>
          <div :class="form.field">
             <label for="description">Description</label>
@@ -16,7 +16,7 @@
          </div>
          <div :class="form.field">
          <label for="">Rating</label>
-         <input type="range" v-model="inputValue"  min="0" max="10" list="number" />{{inputValue}}
+         <input type="range" v-model="inputValue" :class="form.input" min="0" max="10" list="number" />{{inputValue}}
             <datalist id="number">
             <option>1</option>
             <option>2</option>

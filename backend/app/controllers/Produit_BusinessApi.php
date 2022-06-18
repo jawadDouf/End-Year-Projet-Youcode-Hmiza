@@ -72,12 +72,15 @@
     }
       public function getproduitsofAbusiness($id)
   {
-
          $produits = $this->produit_businessModel->getProductsOfBusiness($id);
          echo json_encode($produits);
-
   }
 
+  public function getlastproduitsofAbusiness($id)
+  {
+         $produits = $this->produit_businessModel->getlastProductsOfBusiness($id);
+         echo json_encode($produits);
+  }
    
 
 
@@ -98,33 +101,48 @@
     header('Acces-Control-Allow-Headers: Acces-Control-Allow-Methods,Content-Type,Acces-Control-Allow-Headers,Authorization,X-Requested-With');
     $postedData = json_decode(file_get_contents("php://input"));
     $data = [
-      'id' => $postedData->id,
-      'produit_id' => $postedData->produit_id,
-      'produit_prix' => $postedData->produit_prix,
-      'produit_note' => $postedData->produit_note,
-      'id_err' => '',
+      'produit_id' => $_POST['produit_id'],
+      'produit_prix' => $_POST['produit_prix'],
+      'produit_img' => $_FILES['produit_img2'],
       'produit_id_err' => '',
       'produit_prix_err' => '',
-      'produit_note_err' => '',
-      'id_err' => ''
+      'produit_img_err' => ''
+   
     ];
+          $imag_name = $data['produit_img']['name'];
+          $imag_size = $data['produit_img']['size'];
+          $tmp_name = $data['produit_img']['tmp_name'];
+
+          if ($imag_size > 10250000) {
+            $data['produit_img_err'] = "sorry , your file is too large ";
+          } else {
+            $img_ex = pathinfo($imag_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+            $allowed_exs = array("jpg", "jpeg", "png","webp");
+            if (in_array($img_ex_lc, $allowed_exs)) {
+              $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
+              $img_upload_path = "img/$new_img_name";
+              move_uploaded_file($tmp_name, $img_upload_path);
+              $data['produit_img'] = URLROOT . "/img/$new_img_name";
+            } else {
+              $data['produit_img_err'] = "you can't upload files of this type";
+            }}
     if (empty($data['produit_id'])) {
       $data['produit_id_err'] = 'x';
     }
     if (empty($data['produit_prix'])) {
       $data['produit_prix_err'] = 'x';
     }
-    if (empty($data['produit_note'])) {
-      $data['produit_note_err'] = 'x';
+    if (empty($data['produit_img'])) {
+      $data['produit_img_err'] = 'x';
     }
-    if (empty($data['id'])) {
-      $data['id_err'] = 'x';
+    if (empty($data['produit_id'])) {
+      $data['produit_id_err'] = 'x';
     }
     // Make sure no errors
     if (
-      empty($data['produit_id_err']) && empty($data['produit_prix_err']) && empty($data['produit_note_err']) && empty($data['prefession_err'])
-      && empty($data['id_err'])
-    ) {
+      empty($data['produit_id_err']) && empty($data['produit_prix_err']) && empty($data['produit_img_err']))
+     {
       // Validated
       if ($this->produit_businessModel->updateProduit($data)) {
         $arr = array(
@@ -153,7 +171,7 @@
       }
       
   public function delete($id){
-    echo "ddd";
+    
     if ($this->produit_businessModel->deleteProduit($id)) {
         $arr = array(
             'message' => 'product Deleted'

@@ -1,0 +1,119 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+.container{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 250px;
+    height: auto;
+    cursor: pointer;
+    padding-top: 3px;
+    @include flex($direction:column);
+    @include mobile{
+        margin-block: 15px;
+    }
+    @include tablet{
+        margin-block: 15px;
+    }
+    // padding: 10px;
+    border: 1px solid #0c4aad;
+    border-radius: 6px;
+    .imgContainer{
+        text-align: center;
+        background-color: #0c4aad;
+        width: 90%;
+        
+img{
+        width:100%;
+        height: 150PX;
+        
+    }    
+    }
+.container_infos{
+        padding-inline:3px ;
+h3{
+        text-align: center;
+        padding-block: 5px;
+    }
+p{
+        text-align: center;
+        padding-block: 5px;
+    }
+    }
+.container_numbers{
+        @include flex($direction:row);
+        gap: 2%;
+p{
+        margin-left:5px;
+        color: $primary-color;
+        font-family: $third-font;
+        font-size: 22px;
+        font-weight: 400;
+        
+    
+    }
+    }
+ cursor: pointer;
+    &:hover{
+        background-color: #0c4aad;
+        color: white;
+    }
+    }
+.title{
+        font-size: 13px;
+        color: black;
+    }
+.footer{
+        @include flex($direction:row);
+        padding-top: 10px;
+        padding-bottom: 10px;
+button{
+        @include button();
+        background-color: $primary-color;
+        padding-inline: 10px;
+        padding-block: 5px;
+        font-size: 12px;
+        margin-inline: 10px;
+        @include mobile{
+        padding-inline: 8px;
+        padding-block: 3px;
+        font-size: 10px;
+        }
+        @include smallTablet{
+            padding-inline: 7px;
+            padding-block: 4px;
+            font-size: 10px; 
+        }
+    }
+    }
+.linkk{
+        text-decoration: none;
+        color: white;
+    }
+    .categories{
+        margin-top: 10px;
+        padding-left: 0px;
+       @include flex($direction:row);
+        flex-wrap: wrap;
+
+    .span1{
+       @include categorie($color:rgb(0, 68, 255),$background-color:rgb(0, 234, 255));
+      
+    }
+    .span2{
+        @include categorie($color:white,$background-color:rgb(255, 0, 157));
+        
+    }
+
+}
+p{
+    margin-block: 0px;
+//    width: 50%;
+}
+.locationPar{
+    margin-block: 8px;
+span{
+    padding-left: 5px;
+}
+.location{
+    color: blue;
+}}

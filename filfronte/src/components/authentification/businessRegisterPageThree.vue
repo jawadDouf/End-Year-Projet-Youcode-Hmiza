@@ -5,8 +5,8 @@
        <div :class="bregister3.container_form_email">
        <label :class="bregister3.label">Store Profession:</label>
        <select v-model="vvv" name="Store Profession:" value="Store Profession" id="selected1" :class="bregister3.input">         
-              <option >Products</option>
-              <option >Service</option>
+              <option>Products</option>
+              <option>Service</option>
        </select>
        </div>
        <div :class="bregister3.container_form_password">

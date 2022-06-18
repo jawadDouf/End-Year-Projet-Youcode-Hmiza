@@ -1,0 +1,132 @@
+@import "@/sass/variables.scss";
+@import "@/sass/mexins.scss";
+@import "@/sass/mediaquerise.scss";
+
+.navcontainer{
+    @include flex($direction:row,$justify-content:flex-start);
+.searchBar{
+ margin-left: auto;
+ margin-right: 15px;
+ padding: 5px;
+ background-color: #0c4aad;
+ border-radius: 6px;
+
+input{
+    width: 200px;
+    padding-block: 5px;
+    border-radius: 6px;
+    border: #0c4aad 1px solid;
+    padding-left: 5px;
+}
+}
+}
+.filter{
+    padding-left: 30px;
+    @include flex($direction:row,$justify-content:flex-start,$aligin-items:flex-start);
+    margin-top: 20px;
+    @include mobile{
+    padding-left: 10px;
+    }
+.filterButton{
+    @include filterButton();
+    cursor: pointer;
+.filterIcon{
+    margin-left:10px;
+    @include mobile{
+        margin-left: 2px;
+    }
+}
+}
+
+}
+.filterSecondaryButton{
+    @include filterButton($background-color:white,$color:#0c4aad,$border:#2557a7 solid 1px);
+    margin-inline:10px;
+    cursor: pointer;   
+.filterSecondaryIcon{
+    width: 12px;
+    padding-left: 10px;
+    height: auto;
+    @include mobile{
+        width: 8px;
+        height: auto;
+        padding-left: 6px;
+    }
+}
+}
+.categories{
+   display: flex;
+   flex-direction: column;
+
+.filterSecondaryButton1{
+    @include filterButton($background-color:white,$color:#0c4aad,$border:#2557a7 solid 1px);
+    margin-block:0px;
+    border-radius: 0px;
+    width: 125px;
+    cursor: pointer;
+    
+}
+.filterSecondaryButton2{
+    @include filterButton($background-color:white,$color:#0c4aad,$border:#2557a7 solid 1px);
+    margin-block:0px;
+    border-radius: 0px;
+    width: 150px;
+    cursor: pointer;
+   
+    
+}
+
+}
+.list{
+    position: absolute;
+    top: 20.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+   
+}
+.list2{
+    position: absolute;
+    top: 20.5%;
+    left: 12.7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.list3{
+    position: absolute;
+    top: 20.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.bigContainer{
+    margin-top: 10px;
+    padding-left: 5%;
+    @include flex($direction:row,$justify-content:flex-start);
+    gap:4%;
+    flex-wrap: wrap;
+    @include tablet{
+    @include flex($direction:row,$justify-content:center);
+    }
+    @include mobile{
+        @include flex($direction:row,$justify-content:center);
+        }
+}
+.filterSecondaryButton3{
+    @include filterButton($background-color:white,$color:#0c4aad,$border:#2557a7 solid 1px);
+    margin-block:0px;
+    border-radius: 0px;
+    width: 130px;
+    cursor: pointer;
+    
+}

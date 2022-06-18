@@ -65,7 +65,21 @@
         ];
         return $data;
       }
-
+ 
+      public function getLastReviewOfPb($id){
+        $this->db->query('SELECT * FROM review 
+                          INNER JOIN utilisateur
+                          WHERE review.produit_business_id = :id 
+                          AND review.utilisateur_id = utilisateur.id
+                          ORDER BY review.review_id DESC
+                          LIMIT 1');       
+        $this->db->bind(':id',$id);
+        $results = $this->db->resultSet();
+        // $reviewsNumber = $results->$this->db->rowCount();
+       
+        
+        return $results;
+      }
       
       
       public function getReviewOfUser($id){

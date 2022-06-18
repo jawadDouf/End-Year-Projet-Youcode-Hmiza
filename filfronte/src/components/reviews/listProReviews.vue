@@ -24,18 +24,30 @@ import { onMounted } from "vue";
 import productReview from "../reviews/productReview.vue"
 import reviewStyle from "../../modulescss/reviews/review.scss"
 const props = defineProps({
-    id : Number
+    id : Number,
+    oneReview : Object
 })
 let reviews = ref([])
 
-
-onMounted(
-    axios.get("http://localhost/filrouge/ReviewApi/getProductReviews/" + props.id)
+async function getProductReviews(){
+   await axios.get("http://localhost/filrouge/ReviewApi/getProductReviews/" + props.id)
           .then(response => response.data.result.forEach(element => {
                reviews.value.push(element)
           }))
-)
+}
 
+function addNewReview(){
+    if(props.oneReview){
+        console.log(props.oneReview)
+        reviews.value.push(props.oneReview)    
+    } 
+}
+onMounted(
+    getProductReviews(),
+    addNewReview()
+
+    
+)
 
 
 

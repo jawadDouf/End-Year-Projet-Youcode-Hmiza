@@ -1,5 +1,5 @@
 <template>
- <profileHeader :headerElements=headerElements />
+
  <div :class="block.list">
   <div v-if="productsList" :class="block.items">
   <table :class="block.table">
@@ -20,7 +20,13 @@
     <th :class="block.table_titles"></th>
   </tr>
      <oneItem v-for="oneProduct in product"  :oneItem="oneProduct" 
+     v-if="$store.state.blockPage == 1"
      />
+     <oneItem v-for="oneProduct in product2"  :oneItem="oneProduct" 
+     v-if="$store.state.blockPage == 2"
+     
+     />
+     
      </table>
     </div>
     </div>
@@ -29,15 +35,18 @@
 
 </template>
 <script setup>
+import axios from "axios"
 import block from "../../modulescss/blocks/block.scss"
 import oneItem from "./oneItem.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import profileHeader from "./profileHeader.vue";
 const props = defineProps({
     product : Array,
+    mainProduct : Object
 })
+let produitToSearchWith = ref("")
+let product2 = ref([])
 var productsList = ref(true)
-var headerElements = ["Stores","Reviews","More Infos"]
 function sort(){
     props.product.sort( function( a , b){
   if(a.produit_note > b.produit_note) return -1;
@@ -53,7 +62,19 @@ function sort2(){
 })
   }
 
-      
+onMounted(
+  async ()=>{
+    produitToSearchWith = props.mainProduct.produit_nom.replace(/ /g,"_");
+     await axios
+        .get('http://localhost/hmizaapi/produitApi/produitsSearch/' + produitToSearchWith)
+        .then(response => ( response.data.forEach(element => {     
+           product2.value.push(element);
+    })))
+     
+       
+  }
+
+)    
 
 </script>
 <style>

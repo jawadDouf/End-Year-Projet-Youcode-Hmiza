@@ -37,12 +37,23 @@ import { onMounted } from "vue"
 let user = ref("")
 onMounted(
  ()=>{
-     axios
-        .get('http://localhost/folderr/utilisateureApi/getOneUser/' + localStorage.getItem('id'))
-        .then(response => (
-            user.value = response.data
-        )  
-        )
+    if(localStorage.getItem("externLink")){
+        axios
+            .get('http://localhost/folderr/utilisateureApi/getOneUser/' + localStorage.getItem("externId"))
+            .then(response => (
+                user.value = response.data
+            )  
+            )
+
+    }else{
+         axios
+            .get('http://localhost/folderr/utilisateureApi/getOneUser/' + localStorage.getItem('id'))
+            .then(response => (
+                user.value = response.data
+            )  
+            )
+    }
+     
  }
 
 )

@@ -84,6 +84,7 @@ input{
     border-radius: 6px;
     border: 1px solid black;
     padding-left: 3px;
+    margin-left: 2px;
     @include smallTablet{
         width: 80%;
         margin-block: 10px;
@@ -161,7 +162,7 @@ input{
 }
 .form2{
     @include flex($direction:column,$justify-content:center);
-    width: auto;
+    width: 800px;
 .block{
 margin-block: 18px;
 .input{
@@ -215,6 +216,83 @@ margin-block: 18px;
      font-size: 14px;
  }
  }
+.blocks{
+    @include flex($direction:row);
+    width:100%;
+}
+.field{
+    @include flex($direction:row,$justify-content:flex-start);
+    margin-block: 20px;
+    padding-block: 10px;
+    padding-inline: 15px;
+    width: 100%;
+    
+input,select{
+    padding-block: 7px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(175, 175, 175, 0.934);
+    margin-left: 17%;
+    // padding-left: 3px;
+    @include smallTablet{
+        width: 80%;
+        margin-block: 10px;
+    }
+    @include mobile{
+        width: 80%;
+        margin-block: 10px;
+    }  
+}
+.price{
+    padding-block: 7px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(220, 218, 218, 0.934);
+    margin-left: 27%;
+    // padding-left: 3px;
+    @include smallTablet{
+        width: 80%;
+        margin-block: 10px;
+    }
+    @include mobile{
+        width: 80%;
+        margin-block: 10px;
+    }  
+}
+textarea{
+    padding-block: 7px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(175, 175, 175, 0.934);
+    height:70px;
+    margin-left: 8%;
+
+}
+}
+.submitField{
+    @include flex($direction:row,$justify-content:flex-end);
+    background-color: rgb(231, 231, 231);
+    padding-block: 10px;
+    padding-right: 7px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 99%;
+
+button{
+    padding-inline: 25px;
+    padding-block: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0c4aad;
+    color: white;
+    
+
+}
+p{
+    margin-right: 14px;
+    cursor: pointer;
+}
+}
 
 
 

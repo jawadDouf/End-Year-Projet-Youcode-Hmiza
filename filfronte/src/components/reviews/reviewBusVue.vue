@@ -3,7 +3,7 @@
 <div :class="reviewStyle.user">
  <img :src="user.img" alt="">
  <div :class="reviewStyle.userInfos">
- <h3>{{ user.nom }} {{ user.prenom }}</h3>
+ <h3 @click="goToProfile(user.id)">{{ user.nom }} {{ user.prenom }}</h3>
  <p>{{ review.published_at }}</p>
  </div>
 </div>
@@ -33,7 +33,9 @@
 </p>
 </div>
 <p :class="reviewStyle.body">{{ review.description }}</p>
-
+<div :class="reviewStyle.footer" v-if="!externLink">
+   <p @click="Delete(review.id)"><span><fa :class="reviewStyle.star" :icon="['fas','trash-can']"/></span><span>Delete</span></p>
+</div>
 </div>
   <updateform v-if="updateForm" :review="review" @event="updateForm = !updateForm" />
 
@@ -48,10 +50,15 @@
 import axios from "axios";
 import { onMounted } from "vue";
 import reviewStyle from "../../modulescss/reviews/review.scss"
+import { useRouter, useRoute } from 'vue-router'
 import updateform from "../forms/updateForm"
 import { ref } from "vue";
+
+const route = useRoute()
+const router = useRouter()
 let updateForm = ref(false)
 let addCond = ref(false)
+let externLink = localStorage.getItem('externLink')
 const props = defineProps({
     review : Object
 })
@@ -59,33 +66,52 @@ var user = ref({
     nom : ref(null),
     prenom : ref(null),
     img : ref(null),
+    id : ref(null)
 })
 var business = ref({
     business_id : ref(null)
 })
-
+function goToProfile(id){
+localStorage.setItem("externLink",2)
+localStorage.setItem("externId",id)
+router.push({ name: 'profileView' })
+}
 onMounted(
        ()=>{
-       axios
-        .get('http://localhost/folderr/utilisateureApi/getOneUser/' + props.review.utilisateur_id)
+        if(localStorage.getItem("externLink")){
+           axios
+        .get('http://localhost/filrouge/utilisateureApi/getOneUser/' +  props.review.utilisateur_id)
         .then(response => {
                 user.value.nom = response.data.nom
                 user.value.prenom = response.data.prenom
                 user.value.img = response.data.img
+                user.value.id = response.data.id
         }    
         )
+        }else{
+          axios
+        .get('http://localhost/filrouge/utilisateureApi/getOneUser/' + props.review.utilisateur_id)
+        .then(response => {
+                user.value.nom = response.data.nom
+                user.value.prenom = response.data.prenom
+                user.value.img = response.data.img
+                user.value.id = response.data.id
+        }    
+        )
+        }
+       
    
-   },
+   }
    
 
 ),
 
 
-function delet(id){
+function Delete(id){
    let formdata = new FormData()
    formdata.append('id',id)
    axios
-        .post('http://localhost/filrouge/reviewApi/delete',formdata)
+        .delete('http://localhost/filrouge/reviewApi/delete',formdata)
         .then(response => {
                 console.log(response.data)
         }    

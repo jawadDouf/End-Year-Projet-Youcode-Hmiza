@@ -46,13 +46,14 @@ img varchar(200) NOT NULL,
 ),
 
 CREATE TABLE Review(
-id int PRIMARY KEY AUTO_INCREMENT,
+review_id int PRIMARY KEY AUTO_INCREMENT,
 titre varchar(200) not null,
 description varchar(200) not null,
 note int not null,
-produit_business_id int NOT NULL,
+produit_id int NOT NULL,
 utilisateur_id int NOT NULL,
-FOREIGN KEY(produit_business_id) REFERENCES Produit_Business(id),
-FOREIGN KEY(utilisateur_id) REFERENCES Utilisateur(id),
 published_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+FOREIGN KEY(produit_id) REFERENCES Produits(id) ON DELETE CASCADE,
+FOREIGN KEY(produit_business_id) REFERENCES Produit_Business(id) ON DELETE CASCADE,
+FOREIGN KEY(utilisateur_id) REFERENCES Utilisateur(id) ON DELETE CASCADE,
 ),

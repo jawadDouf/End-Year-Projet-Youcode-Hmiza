@@ -2,7 +2,7 @@
 @import "@/sass/mexins.scss";
 @import "@/sass/mediaquerise.scss";
 .cantainer{
-    width: 70%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -20,11 +20,27 @@
 }
 }
 .container_img{
+   
 .img{
     width: 80%;
     height: auto;
+    padding-left: 30px;
+    @include tablet{
+        width: 80%;
+        height: auto;
+        padding-left: 30px;
+    }
+    
+    
    @include mobile{
        width: 100%;
+       height: auto;
+   }
+   @include smallTablet{
+    width: 80%;
+    height: auto;
+    padding-left: 30px;
+
    }
 
 } 
@@ -92,6 +108,15 @@ button{
     padding-block:10px;
     padding-inline:160px;
     margin-block:10px ;
+    @include mobile{
+    padding-block:5px;
+    padding-inline:80px;
+    }
+    @include tablet{
+        padding-block:8px;
+        padding-inline:130px;   
+    }
+   
 }
 .businessName{
     color: #0c4aad;

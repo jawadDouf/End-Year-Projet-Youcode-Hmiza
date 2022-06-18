@@ -21,6 +21,10 @@
     border-radius: 10px;
     font-family: $third-font;
     border: #0c4aad 1px solid;
+    @include mobile{
+    width:350px;
+    left: 3%;
+    }
 .form{
     width:100%
     
@@ -45,13 +49,29 @@ p{
     margin-block: 20px;
     padding-block: 10px;
     padding-inline: 15px;
-    
-input{
+.price{
+    padding-block: 7px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(175, 175, 175, 0.934);
+    margin-left: 23%;
+    // padding-left: 3px;
+    @include smallTablet{
+        width: 80%;
+        margin-block: 10px;
+    }
+    @include mobile{
+        width: 80%;
+        margin-block: 10px;
+    } 
+}
+.input{
     padding-block: 7px;
     width: 100%;
     border-radius: 6px;
     border: 1px solid rgba(175, 175, 175, 0.934);
     margin-left: 17%;
+    padding-left: 3px;
     // padding-left: 3px;
     @include smallTablet{
         width: 80%;
@@ -95,3 +115,4 @@ p{
     cursor: pointer;
 }
 }
+
