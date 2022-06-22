@@ -40,7 +40,12 @@
     public function updateNote($data){
 
       $product = $this->getOneProduct($data['produit_business_id']);
-      $note = ($product->produit_note + $data['note']) / 2;
+      if($product->produit_note === 0){
+        $note = $data['note'];
+      }else{
+       $note = ($product->produit_note + $data['note']) / 2; 
+      }
+      
       echo $note;
       $this->db->query('UPDATE produit_business SET produit_note = :produit_note  WHERE id = :id');
       // Bind values

@@ -20,13 +20,13 @@
     <th :class="block.table_titles"></th>
   </tr>
      <oneItem v-for="oneProduct in product"  :oneItem="oneProduct" 
-     v-if="$store.state.blockPage == 1"
+     v-if="$store.state.blockPage == 1" 
      />
      <oneItem v-for="oneProduct in product2"  :oneItem="oneProduct" 
      v-if="$store.state.blockPage == 2"
      
      />
-     
+     {{ produitName }}
      </table>
     </div>
     </div>
@@ -39,7 +39,7 @@ import axios from "axios"
 import block from "../../modulescss/blocks/block.scss"
 import oneItem from "./oneItem.vue";
 import { onMounted, ref } from "vue";
-import profileHeader from "./profileHeader.vue";
+// import profileHeader from "./profileHeader.vue";
 const props = defineProps({
     product : Array,
     mainProduct : Object

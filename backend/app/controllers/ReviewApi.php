@@ -131,7 +131,6 @@ class reviewApi extends Controller {
 
   public function delete($id)
   {
-   
       if ($this->reviewModel->deleteReview($id)) {
         $arr = array(
           'messnote' => 'Review Deleted'
@@ -147,11 +146,16 @@ class reviewApi extends Controller {
   
 
   public function getLatestReviews($id){
-    $reviews = $this->reviewModel->latestReviews($id);
+    $reviews = $this->reviewModel->latestReview($id);
     echo json_encode($reviews);
    }
    public function getLastReview($id){
     $reviews = $this->reviewModel->getLastReviewOfPb($id);
     echo json_encode($reviews);
+   }
+
+   public function getReviewsNumber($id){
+    $reviewsNumber = $this->reviewModel->getReviewsNumber($id);
+    echo json_encode($reviewsNumber);
    }
 }

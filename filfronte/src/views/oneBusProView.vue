@@ -11,8 +11,8 @@
   <p :class="one.p">{{ oneProduct.produit_description }}</p>
   <div :class="one.spans">
   <span :class="one.span1">{{oneProduct.produit_categorie}}</span>
-  <span :class="one.span2">Technologie</span>
-  <span :class="one.span3">Phone</span>
+  <span :class="one.span2">{{oneProduct.produit_souscategorie}}</span>
+  <span :class="one.span3">{{oneProduct.produit_souscategorie2}}</span>
   </div>
   
   <h3 :class="one.h3"><span :class="one.spans2">Rating :</span> {{oneProduct.produit_note}}/10</h3>
@@ -20,12 +20,13 @@
   <h3 :class="one.h3"><span :class="one.spans2">Price :</span> {{oneProduct.produit_prix }}$</h3>
   <h3 :class="one.h3"><span :class="one.spans2">Store Location :</span> <span @click="goToProfile(oneProduct.business_id)" :class="one.businessName">{{oneProduct.business_nom }}</span></h3>
   <h3 :class="one.h3"><span :class="one.spans2">Store :</span> <span >{{oneProduct.business_adresse }},{{oneProduct.business_location}}</span></h3>
- <button @click="addCond = !addCond" v-if="actor == 2">Add Review</button>
+ <button @click="$store.commit('modifybringEl',true)" v-if="actor == 2">Add Review</button>
+ <button  v-if="!actor" @click="mockingUser()">Add Review</button>
   </div> 
  </div>
    <profileHeader :headerElements=headerElements />
-   <reviewsList :id="id" :oneReview="oneReview"/>
-   <ultimeFormVue :id="id" v-if="addCond" @event="addCond = !addCond" @event2="getLatestReview()"/>
+   <reviewsList :id="id" @event3="getProductBus()"/>
+   
 
 
 
@@ -48,26 +49,29 @@ const route = useRoute()
 const router = useRouter()
 let id = route.params.id
 let oneProduct = ref("");
-let oneReview = ref(undefined);
 var headerElements = ["Reviews","Best Reviews","Worst Reviews"]
-let addCond = ref(false)
 let actor = ref(localStorage.getItem('user'))
-onMounted(
-    ()=>{
-     axios.get("http://localhost/filrouge/Produit_BusinessApi/getoneproduct/" + id)
+var userId = localStorage.getItem('id')
+async function getProductBus(){
+  
+   await  axios.get("http://localhost/filrouge/Produit_BusinessApi/getoneproduct/" + id)
           .then(response => {
-              oneProduct.value = response.data 
-              
+              oneProduct.value = response.data     
           }   
           )
-    },
     
-)
+}
+onMounted(
+    getProductBus()
+    
+),
 function getLatestReview(){
-  axios.get("http://localhost/filrouge/ReviewApi/getLatestReviews/" + id)
+  console.log("im'in")
+  console.log(id)
+  axios.get("http://localhost/filrouge/ReviewApi/getLastReview/" + id)
           .then(response => {
               oneReview.value = response.data 
-              console.log("uu",response.data[0])
+              console.log("uu",response.data)
           }   
           )
 }
@@ -76,7 +80,9 @@ localStorage.setItem("externLink",1)
 localStorage.setItem("externId",id)
 router.push({ name: 'profileView', params: { id: id} })
 }
-
+function mockingUser(){
+router.push({ name: 'AuthView' })
+}
 
 
 

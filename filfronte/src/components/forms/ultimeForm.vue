@@ -60,7 +60,7 @@ const props = defineProps({
 let inputValue = ref()
 let title = ref("")
 let description = ref("")
-
+let oneReview = ref("")
 
 
 function addReview(){
@@ -73,7 +73,9 @@ function addReview(){
       axios.post("http://localhost/filrouge/ReviewApi/addReview",formData)
       .then(
          response => console.log(response.data)
-      ).then(()=>{
+      )
+      
+      .then(()=>{
       inputValue.value = "",
       title.value = " ",
       description.value = " "

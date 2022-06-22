@@ -48,7 +48,8 @@
         <label for="">Ctegorie</label>
           <select  name="Profession Categorie:" v-model="categorie" value="choose The main Categorie" :class="addForm.input">
             <option value="" disabled selected>choose The main Categorie</option>
-              <option>Services</option>
+              <option>Service
+              </option>
               <option>Products</option>
             </select>
         </div>
@@ -105,7 +106,7 @@ import addForm from "../../modulescss/forms/addForm.scss"
 import { useStore } from "vuex";
 import { ref } from "vue";
 const store = useStore()
-const emit = defineEmits(['event','event2'])
+const emit = defineEmits(['event','event2','event3'])
 const props = ({
   businessProducts : Array
 })
@@ -124,15 +125,16 @@ var options = {
       "Coiffure"
     ],
     "Products" : [
-      "Technologie",
+      "Tech",
       "Food",
       "Clothes"
     ],
-    "Technologie" : [
+    "Tech" : [
       "Phone",
       "Tablette",
       "Watch",
-      "Speaker"
+      "Speaker",
+      "playstation",
     ]
     }
 function sendImage(event){
@@ -203,6 +205,9 @@ function addProductBusiness(){
           .catch(function (response) {
             console.log(response);
           });
+   
+     emit('event')
+     emit('event2')
 }
 
 </script>

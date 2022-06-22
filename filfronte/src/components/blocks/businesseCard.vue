@@ -15,7 +15,7 @@
     </div>  
      
      <div :class="businessCard.footer" >
-         <button>
+         <button @click="goToProfile(business.business_id)">
          See More
          </button>
      </div> 
@@ -35,7 +35,9 @@ import axios from "axios"
 import { onMounted } from "vue";
 import businessCard from "../../modulescss/businesses/businessCard.scss"
 import { ref } from "vue";
+import { useRouter, useRoute } from 'vue-router'
 
+const route = useRouter()
 const prop = defineProps({
     business : Object
 })
@@ -52,7 +54,11 @@ onMounted(
 )
 
 
-
+function goToProfile(id){
+localStorage.setItem("externLink",1)
+localStorage.setItem("externId",id)
+route.push({ name: 'profileView', params: { id: id} })
+}
 
 
 

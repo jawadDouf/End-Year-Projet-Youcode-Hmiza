@@ -6,7 +6,7 @@
 </div>
 </div>
 
-<addProduct :businessProducts="businessProducts" v-if="(addCond)" @event="addCond = !addCond" @event2="getLast"/>
+<addProduct :businessProducts="businessProducts" v-if="(addCond)" @event="addCond = !addCond" @event2="getLast" />
 {{ user }}
 
 
@@ -22,22 +22,23 @@ import { ref } from "vue";
 import productsList from "../../modulescss/products/productsList.scss"
 import ListProduct from "../products/listProduct.vue";
 import addProduct from "../../components/forms/addProduct.vue"
+// import { response } from "express";
 let businessProducts = ref([])
 let addCond = ref(false)
 let lastProduct = ref("")
 let user = localStorage.getItem('externLink')
 async function getProducts(){
-       //  businessProducts = ref([])
+      
        if(localStorage.getItem("externLink")){
       await axios
-        .get('http://localhost/folderr/Produit_BusinessApi/getproduitsofAbusiness/' + localStorage.getItem('externId'))
+        .get('http://localhost/filrouge/Produit_BusinessApi/getproduitsofAbusiness/' + localStorage.getItem('externId'))
         .then(response => (response.data.forEach(element => {
                businessProducts.value.push(element)
         })))   
 
  }else{
        await axios
-        .get('http://localhost/folderr/Produit_BusinessApi/getproduitsofAbusiness/' + localStorage.getItem('id'))
+        .get('http://localhost/filrouge/Produit_BusinessApi/getproduitsofAbusiness/' + localStorage.getItem('id'))
         .then(response => (response.data.forEach(element => {
                
                businessProducts.value.push(element)
@@ -50,19 +51,29 @@ onMounted(
    getProducts()  
 )
 function getLast(){
+        
        console.log("businessProducts.value")
    axios
         .get('http://localhost/filrouge/Produit_BusinessApi/getlastproduitsofAbusiness/' + localStorage.getItem('id'))
         .then(response => {
               console.log(response.data)
              businessProducts.value.push(response.data[0])
-             console.log("businessProducts.value")
+             console.log(response.data)
         }
                
         )
 }
 
+async function getProducts2(){
+        businessProducts.value = ref([])
+       await axios
+        .get('http://localhost/filrouge/Produit_BusinessApi/getproduitsofAbusiness/' + localStorage.getItem('id'))
+        .then(response => (response.data.forEach(element => {
+               businessProducts.value.push(element)
 
+        }))) 
+        
+}
 
 
 

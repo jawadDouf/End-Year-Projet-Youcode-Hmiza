@@ -28,7 +28,8 @@ export default createStore({
       business_sousprofession : null,
       business_description : null
     },
-    blockPage : 1
+    blockPage : 1,
+    bringCond : false
 
   },
   getters: {
@@ -92,7 +93,11 @@ export default createStore({
  },
  changeBlockPage(state,loader){
    state.blockPage = loader
+ },
+ modifybringEl(state,loader){
+   state.bringCond = loader
  }
+
   },
   actions:{
       getProducts({ commit },toSearchWith = "d"){ 

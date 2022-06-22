@@ -1,6 +1,6 @@
 <template>
 <div :class="reviewsList.container">
-<reviewBusVue  v-for="review in reviews" :review="review" />
+<reviewBusVue  v-for="review in reviews" :review="review" @event="getReviews()" />
 </div>
 
 
@@ -38,7 +38,14 @@ onMounted(
        
    }
 )
-
+function getReviews(){
+     reviews.value = []
+    axios
+        .get('http://localhost/filrouge/ReviewApi/getLatestReviews/' + localStorage.getItem('id'))
+        .then(response => (response.data.forEach(element => {
+             reviews.value.push(element)
+        })))
+}
 
 
 

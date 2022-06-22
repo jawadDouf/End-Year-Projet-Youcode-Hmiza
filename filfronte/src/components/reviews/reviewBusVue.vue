@@ -34,9 +34,10 @@
 </div>
 <p :class="reviewStyle.body">{{ review.description }}</p>
 <div :class="reviewStyle.footer" v-if="!externLink">
-   <p @click="Delete(review.id)"><span><fa :class="reviewStyle.star" :icon="['fas','trash-can']"/></span><span>Delete</span></p>
+   <p @click="supprimer(review.review_id,$event)"><span><fa :class="reviewStyle.star" :icon="['fas','trash-can']"/></span><span>Delete</span></p>
 </div>
 </div>
+
   <updateform v-if="updateForm" :review="review" @event="updateForm = !updateForm" />
 
 
@@ -53,10 +54,12 @@ import reviewStyle from "../../modulescss/reviews/review.scss"
 import { useRouter, useRoute } from 'vue-router'
 import updateform from "../forms/updateForm"
 import { ref } from "vue";
-
+import Swal from 'sweetalert2'
+const emit = defineEmits(['event'])
 const route = useRoute()
 const router = useRouter()
 let updateForm = ref(false)
+
 let addCond = ref(false)
 let externLink = localStorage.getItem('externLink')
 const props = defineProps({
@@ -75,6 +78,16 @@ function goToProfile(id){
 localStorage.setItem("externLink",2)
 localStorage.setItem("externId",id)
 router.push({ name: 'profileView' })
+}
+async function supprimer(id){
+          await axios.post('http://localhost/filrouge/reviewApi/delete/' + id)
+        .then(response => {
+                console.log(response.data)
+        }    
+        )
+
+        emit('event')
+      // event.target.parentElement.parentElement.parentElement.remove();
 }
 onMounted(
        ()=>{
@@ -104,19 +117,10 @@ onMounted(
    }
    
 
-),
+)
 
 
-function Delete(id){
-   let formdata = new FormData()
-   formdata.append('id',id)
-   axios
-        .delete('http://localhost/filrouge/reviewApi/delete',formdata)
-        .then(response => {
-                console.log(response.data)
-        }    
-        )
-}
+
 
 
 

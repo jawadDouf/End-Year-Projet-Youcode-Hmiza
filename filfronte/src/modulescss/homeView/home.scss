@@ -3,7 +3,7 @@
 @import "@/sass/mediaquerise.scss";
 .cover{
     width: 100%;
-  height:auto;
+    height:auto;
 .caption{
    position: absolute;
     left: 7%;
@@ -24,12 +24,27 @@ p{
 .buttons{
 width: 100%;
 @include flex($direction:row,$justify-content:flex-start);
+text-decoration: none;
+margin-block: 25px;
 .button1{
     padding-inline: 50px;
+    padding-block: 12px;
+    background-color: hsl(36.4, 88.2%, 63.3%);
+    @include mobile{
+        padding-inline: 30px;
+    padding-block: 8px;
+    }
 }
 .button2{
-    padding-inline: 20px;
+    padding-inline: 30px;
     margin-inline: 10px;
+    background-color: #2d438700;
+    border: 1.5px solid white;
+    &:hover{
+        
+        background-color: white;
+        color: black;
+    }
 }
 }
 }
@@ -45,6 +60,18 @@ img{
     width: 100%;
     height: 532px;
     background-color: rgba(20, 40, 101, 0.767);
+    @include tablet{
+        top: 8.5%; 
+    }
+    @include dangerBreakPoint{
+        top: 8%; 
+    }
+    @include smallTablet{
+        top: 8.5%; 
+    }
+    @include mobile{
+        top: 9%;
+    }
 }
 .secSection{
 .secSection_title{
@@ -224,4 +251,8 @@ padding-left:8px ;
     
     }
 }
+}
+.link{
+    text-decoration: none;
+    color: white;
 }

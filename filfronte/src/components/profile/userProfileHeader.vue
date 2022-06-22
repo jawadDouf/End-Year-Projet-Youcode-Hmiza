@@ -10,7 +10,7 @@
 </div>
 <div :class="profileInfos.infosContainer">
 <h3>{{user.nom}} {{ user.prenom }}</h3>
-<p :class="profileInfos.paragraph">{{user.description}}</p>
+<p :class="profileInfos.paragraph">{{user.utilisateur_description}}</p>
 <p  :class="profileInfos.locationPar"> <fa :icon="['fa','envelope']" :class="profileInfos.location"/> {{ user.email}}</p>
 <!-- <p :class="profileInfos.locationPar"><fa :icon="['fa','location-dot']" :class="profileInfos.location"/><span>{{user.user_adresse}},{{user.user_location}},Morrocco</span></p> -->
 <div :class="profileInfos.icons2">

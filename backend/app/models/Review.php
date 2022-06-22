@@ -40,9 +40,9 @@
       }
 
       public function deleteReview($id){
-        $this->db->query('DELETE FROM review WHERE review_id = :id');                 
+        $this->db->query('DELETE FROM review WHERE review_id = :review_id');                 
         // Bind values
-        $this->db->bind(':id',$id);
+        $this->db->bind(':review_id',$id);
         // Execute
         if($this->db->execute()){
           return true;
@@ -97,8 +97,19 @@
         ];
         return $data;
       }
-
-      public function latestReviews($id){
+      public function getReviewsNumber($id){
+        $this->db->query('SELECT * FROM review 
+        INNER JOIN produit_business      
+        ON utilisateur_id = :id
+        ');       
+        $this->db->bind(':id',$id);
+        $results = $this->db->resultSet();
+        // $reviewsNumber = $results->$this->db->rowCount();
+        $reviewsNumber = $this->db->rowCount();
+        
+        return $reviewsNumber;
+      }
+      public function latestReview($id){
         $this->db->query('SELECT * FROM review 
         INNER JOIN produit_business
         ON review.produit_business_id = produit_business.id

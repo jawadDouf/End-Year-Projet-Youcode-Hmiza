@@ -1,5 +1,6 @@
 <template>
 <div :class="businessStyle.navcontainer">
+
  <div :class="businessStyle.filter">
  <div :class="businessStyle.categories">
  <button @click="shower1 = !shower1" :class="businessStyle.filterButton">Filter<span>
@@ -27,13 +28,13 @@
  </div>
  </div>
  </div>
- 
-<div :class="businessStyle.searchBar">
+ <div :class="businessStyle.searchBar">
     <input type="text" v-model="searchText" placeholder="Search For Businessses" @keyup="search(searchText)"/>
  </div>
+
 </div>
  <div :class="businessStyle.bigContainer">
- <businesseCardVue v-if="tofilterwith === undefined" v-for="business in businesses" :business="business"/>
+  <businesseCardVue v-if="tofilterwith === undefined " v-for="business in businesses" :business="business"/>
   <businesseCardVue  v-for="business in businesses.filter(bus => bus.business_profession === tofilterwith || bus.business_sousprofession === tofilterwith || bus.business_location === location)" :business="business"/>
  </div>
 
@@ -57,7 +58,7 @@ var shower2 = ref(false)
 var shower3 = ref(false)
 let businesses = ref([])
 var tofilterwith = ref(undefined)
-var location = ref(undefined)
+var location = ref("")
 var searchText = ref("")
 let cities = ref([])
 onBeforeMount(
@@ -114,19 +115,26 @@ function filter3(el){
 function filter4(city){
  console.log("im'in")
  shower3.value = !shower3.value
-  document.getElementById("filter").innerHTML = city
-  location.value = city
+ document.getElementById("filter").innerHTML = city
+ location.value = city
 }
 
 async function search(searchText){
-    businesses.value = ref([])
+    if(searchText.length > 0){
+    businesses.value = []
     console.log("element")
     let searchTextFormated =  searchText.replace(/ /g,"_");
      await axios.post('http://localhost/filrouge/BusinessApi/businessesSearch/' + searchTextFormated).then(response => response.data.forEach(element => {
-         
           businesses.value.push(element)
-          
-      }))
+    console.log("element2")
+      }))    
+    }else{
+       await axios.get('http://localhost/filrouge/BusinessApi/getAllBusinessess').then(response => response.data.forEach(element => {
+          businesses.value.push(element)
+      }))    
+             
+    }
+    
 
   
 }

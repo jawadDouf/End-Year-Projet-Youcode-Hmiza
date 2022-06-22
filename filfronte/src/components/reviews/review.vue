@@ -36,7 +36,7 @@
 <p :class="reviewStyle.body">{{ review.description }}</p>
 <div :class="reviewStyle.footer" v-if="!externLink">
    <p @click="updateForm = !updateForm"><span><fa :class="reviewStyle.star" :icon="['fas','file-pen']"/></span><span>Update</span></p>
-   <p @click="dlt(review.review_id)"><span><fa :class="reviewStyle.star" :icon="['fas','trash-can']"/></span><span>Delete</span></p>
+   <p @click="dlt(review.review_id,$event)"><span><fa :class="reviewStyle.star" :icon="['fas','trash-can']"/></span><span>Delete</span></p>
 </div>
 </div>
   <updateform v-if="updateForm" :review="review" @event="updateForm = !updateForm" />
@@ -69,6 +69,17 @@ var business = ref({
     business_id : ref(null)
 })
 let externLink = localStorage.getItem('externLink')
+function dlt(id,event){
+        
+   axios
+        .post('http://localhost/filrouge/reviewApi/delete/' + id)
+        .then(response => {
+                console.log(response.data)
+        }    
+        )
+              event.target.parentElement.parentElement.parentElement.remove();
+
+}
 onMounted(
        ()=>{
         if(localStorage.getItem("externLink")){

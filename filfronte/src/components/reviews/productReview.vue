@@ -22,7 +22,7 @@
 </p>
 </div>
 
-<p :class="reviewStyle.body"> {{review.description}} </p>
+<p :class="reviewStyle.body"> {{ review.description }} </p>
 
 </div>
 </template>

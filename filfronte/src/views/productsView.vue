@@ -22,7 +22,7 @@
             <!-- </button> -->
         <!-- </div>
  </div> -->
-
+<div :class="index.navcontainer">
  <div :class="index.filter">
  <div :class="index.categories">
  <button @click="shower1 = !shower1" :class="index.filterButton">Filter <span>
@@ -37,7 +37,7 @@
   <button :class="index.filterSecondaryButton" @click="shower2=!shower2" id="filter2">Categorie<span>
  <fa :icon="['fas','caret-down']" :class="index.filterSecondaryIcon"/>
  </span></button>
-  <div v-if="shower2" :class="index.list">
+  <div v-if="shower2" :class="index.list2">
     <button v-for="el in filter[tofilterwith]"  :class="index.filterSecondaryButton1"  @click="filter3(el)">{{ el }}</button>
  </div>
  
@@ -48,12 +48,18 @@
 <button :class="index.filterSecondaryButton" @click="shower3=!shower3" id="filter3">Sub-Categorie<span>
  <fa :icon="['fas','caret-down']" :class="index.filterSecondaryIcon"/>
  </span></button>
- <div v-if="shower3" :class="index.list">
+ <div v-if="shower3" :class="index.list3">
     <button v-for="el in filter[tofilterwith]"  @click="filter3(el)" :class="index.filterSecondaryButton1">{{ el }}</button>
  </div>
 
 </div>
  
+ </div>
+  <div :class="index.searchBar">
+    <input type="text"  v-model="tosearch" placeholder="Search" id="input" @keyup="$store.dispatch('getProducts',tosearch)"/>
+ </div>
+ 
+
  </div>
  <section  :class="index.products"> 
  
@@ -78,6 +84,7 @@ var variable = ref(undefined)
 var shower1 = ref(false)
 var shower2 = ref(false)
 var shower3 = ref(false)
+var tosearch = ref("d")
 var tofilterwith = ref(undefined)
 var filter = {
     "typeofElement" : [
@@ -89,11 +96,11 @@ var filter = {
       "Coiffure"
     ],
     "Product" : [
-      "Technologie",
+      "Tech",
       "Food",
       "Clothes"
     ],
-    "Technologie" : [
+    "Tech" : [
       "Phone",
       "Tablet",
       "Smart Watch",

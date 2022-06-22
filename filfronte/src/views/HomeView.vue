@@ -7,8 +7,11 @@
 <h1>We <span>Talk</span> And <span>Ask</span> for opinions <br>to make better choices </h1>
 <p>we try to improve the consumer experiance</p>  
 <div :class="home.buttons">
-   <button :class="home.button1">Search For Product</button>
-   <button :class="home.button2">Businesses</button>
+   <button :class="home.button1"><router-link  :class="home.link" to ="/productsView">Search For Product</router-link></button>
+   <button  :class="home.button2"><router-link :class="home.link" to ="/businessesView">Businesses</router-link></button>
+    
+ 
+ 
 </div>
 </div>
 
@@ -20,9 +23,9 @@
  <h1 :class="home.secSection_leftside_bigTitle">We are trying to make your<br> custumer Experiance in the<br> internet easier</h1>
  <p :class="home.secSection_leftside_par">Contrary to popular belief, Lorem Ipsum is not<br> simply random text. It has roots in a piece of<br> classical Latin </p>
  <div :class="home.secSection_leftside_checkpoints">
-  <p :class="home.par"><fa :icon="['fas','circle-check']" :class="home.check"/><span>same shit i didn’t think about it yet</span></p>
- <p :class="home.par"><fa :icon="['fas','circle-check']" :class="home.check"/><span>some shit i didn’t think about it yet</span></p>
- <p :class="home.par"><fa :icon="['fas','circle-check']" :class="home.check"/><span>some shit i didn’t think about it yet</span></p>
+  <p :class="home.par"><fa :icon="['fas','circle-check']" :class="home.check"/><span>same thing i didn't think about it yet</span></p>
+ <p :class="home.par"><fa :icon="['fas','circle-check']" :class="home.check"/><span>some thing i didn't think about it yet</span></p>
+ <p :class="home.par"><fa :icon="['fas','circle-check']" :class="home.check"/><span>some thing i didn't think about it yet</span></p>
  </div>
  <div :class="home.secSection_leftside_button">
  <button :class="home.button">Learn More about us</button>

@@ -7,7 +7,7 @@
   </div>
   <div :class="one.container_infos"> 
   <p :class="one.p1">In publishing and graphic design and graphic design</p>
-  <h2 :class="one.h2">Iphone 2020 S5 JAPAN STEVY DUDE UAYEUZ</h2>
+  <h2 :class="one.h2">{{ mainProduct.produit_nom }}</h2>
   <p :class="one.p">{{ mainProduct.produit_description }}</p>
   <div :class="one.spans">
   <span :class="one.span1">{{mainProduct.produit_categorie}}</span>
@@ -59,6 +59,7 @@ var min = ref(0)
 var max = ref(11)
 var exp = ref(10000000000000)
 var cheap = ref(0)
+let produitName = ref("")
 onMounted(
   async ()=>{
        await axios
@@ -85,10 +86,9 @@ onMounted(
             exp.value = element.produit_prix
             expensiveProduct.value = element
           } 
-          }  
+          } 
           product.value.push(element);
         }),
-        
          mainProduct.value = response.data.produit 
         )
         )  

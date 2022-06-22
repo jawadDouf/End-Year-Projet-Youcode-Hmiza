@@ -30,17 +30,18 @@
       reviews: 
       </span>
       <span>
-      30
+      {{ reviewsNumber }}
       </span>
       </p>
       </div> 
       </div>
+      
      <div :class="listProduct.footer" >
-         <button v-if="externLink" @click.prevent="updateFormCond = !updateFormCond">Update</button>
+         <button v-if="!externLink" @click.prevent="updateFormCond = !updateFormCond">Update</button>
          <button><router-link :class="listProduct.linkk" :to ="{ name:'oneBusProView',params : {id : oneProduct.id , oneProduct:oneProduct}}">
          See More
          </router-link></button>
-         <button v-if="externLink" @click.prevent="dlt(oneProduct.id,$event)">Delete</button>
+         <button v-if="!externLink" @click.prevent="dlt(oneProduct.id,$event)">Delete</button>
      </div> 
      
   </div>
@@ -52,9 +53,11 @@ import axios from "axios";
 import listProduct from "../../modulescss/products/listProduct.scss"
 import updateProductVue from "../forms/updateProduct.vue";
 import { useRouter, useRoute } from 'vue-router'
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 let user = localStorage.getItem('externId')
+let externLink = localStorage.getItem('externLink')
 var updateFormCond = ref(false)
+let reviewsNumber = ref()
 const router = useRouter()
 const props = defineProps({
     oneProduct : Object
@@ -71,10 +74,24 @@ function dlt(id,event){
 }
 
 function getToProduct(id){
-
 router.push({  path: '/businessProfileView/' + id })
 }
+onMounted(
+   () =>{
+    console.log(props.oneProduct.id)
+    axios
+    .get('http://localhost/filrouge/reviewApi/getProductReviews/' + props.oneProduct.id)
+        .then( response => 
+          
+          reviewsNumber.value = response.data.reviewsNumber
+        
+         
+         
+       ); 
+  }
+    
 
+)
 
 
 

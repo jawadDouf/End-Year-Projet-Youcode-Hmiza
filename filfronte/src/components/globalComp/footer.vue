@@ -6,28 +6,28 @@
   </div>
   <div :class="footer.footer_services">
    <div :class="footer.service">
-  <h2 :class="footer.service_title">service</h2>
+  <h2 :class="footer.service_title">Service</h2>
   <p :class="footer.service_par">Lorem ipsum</p>
   <p :class="footer.service_par">Lorem Ipsum</p>
   <p :class="footer.service_par">Routine check_ups</p>
   <p :class="footer.service_par">Lorem Ipsum</p>
   </div>
   <div :class="footer.service">
-  <h2 :class="footer.service_title">service</h2>
+  <h2 :class="footer.service_title">About</h2>
   <p :class="footer.service_par">Lorem ipsum</p>
   <p :class="footer.service_par">Lorem Ipsum</p>
   <p :class="footer.service_par">Routine check_ups</p>
   <p :class="footer.service_par">Lorem Ipsum</p>
   </div>
   <div :class="footer.service">
-  <h2 :class="footer.service_title">service</h2>
+  <h2 :class="footer.service_title">Help</h2>
   <p :class="footer.service_par">Lorem ipsum</p>
   <p :class="footer.service_par">Lorem ipsum</p>
   <p :class="footer.service_par">Lore Ipsum</p>
   <p :class="footer.service_par">Lorem Ipsum</p>
   </div>
   <div :class="footer.service">
-  <h2 :class="footer.service_title">service</h2>
+  <h2 :class="footer.service_title">more</h2>
   <p :class="footer.service_par">Lorem ipsum</p>
   <p :class="footer.service_par">Lorem Ipsum</p>
   <p :class="footer.service_par">Routine check_ups</p>
@@ -39,8 +39,9 @@
    <div :class="footer.subFooter_firstLine">
     <div :class="footer.firstLine_navLinks">
       <ul>
-      <li>Acceuil</li>
-        <li>Produits</li>
+      <li>Home</li>
+        <li>Products</li>
+        <li>Businesses</li>
         <li>Profile</li>
         <li>About</li>
       </ul>
